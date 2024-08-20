@@ -1,5 +1,6 @@
 import { Chart1 } from "../components/home-components/Chart1"
 import { Chart2 } from "../components/home-components/Chart2"
+import { SvgContainer } from "../icons/SvgContainer"
 
 export const Home = () => {
     return (
@@ -33,16 +34,20 @@ export const Home = () => {
             <div className="flex flex-col justify-center w-[90%] h-[250px] bg-cont-100 mt-5 p-5 ">
                 <h3 className="text-cont-50">Containers</h3>
                 <div className="flex w-full relative">
-                    <Chart1 className="!w-[20%] !h-auto" />
-                    <img src="/assets/bag-happy.png" className="absolute left-[7.2%] top-4 w-[6%]" alt="" />
-                    <Chart1 className="!w-[20%] !h-auto" />
-                    <img src="/assets/bag-happy.png" className="absolute left-[27.2%] top-4 w-[6%]" alt="" />
-                    <Chart1 className="!w-[20%] !h-auto" />
-                    <img src="/assets/bag-happy.png" className="absolute left-[47.2%] top-4 w-[6%]" alt="" />
-                    <Chart1 className="!w-[20%] !h-auto" />
-                    <img src="/assets/bag-happy.png" className="absolute left-[67.2%] top-4 w-[6%]" alt="" />
-                    <Chart1 className="!w-[20%] !h-auto" />
-                    <img src="/assets/bag-happy.png" className="absolute left-[87.2%] top-4 w-[6%]" alt="" />
+                    <Chart1 className="!w-[18%] !h-auto" />
+                    <SvgContainer className="absolute left-[6.2%] top-4 w-[6%]" fillColor="#757575" />
+                    <Chart1 className="!w-[18%] !h-auto" />
+                    <SvgContainer className="absolute left-[24.2%] top-4 w-[6%]" fillColor="#757575" />
+                    <Chart1 className="!w-[18%] !h-auto" />
+                    <SvgContainer className="absolute left-[42.2%] top-4 w-[6%]" fillColor="#757575" />
+                    <Chart1 className="!w-[18%] !h-auto" />
+                    <SvgContainer className="absolute left-[60.2%] top-4 w-[6%]" fillColor="#757575" />
+                    <Chart1 className="!w-[18%] !h-auto" />
+                    <SvgContainer className="absolute left-[78.2%] top-4 w-[6%]" fillColor="#757575" />
+                    <div className="flex justify-center items-center bg-[#363740] w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed">
+                        <div className="flex justify-center items-center absolute bg-white w-[20px] h-[20px] right-1 top-0 rounded-full" id="addBtn">+</div>
+                        <SvgContainer className="w-3/5 h-3/5" fillColor="white" />
+                    </div>
                 </div>
             </div>
         </div>

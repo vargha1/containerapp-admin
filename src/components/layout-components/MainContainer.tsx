@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import { Home } from '../../pages/Home'
 import { Loan } from '../../pages/Loan'
+import { Return } from '../../pages/Return'
+import { Containers } from '../../pages/Containers'
 export const MainContainer = () => {
     return (
         <div className="flex flex-col w-[calc(100%-250px)] h-full items-center bg-[#f5f5f9]">
@@ -18,8 +20,8 @@ export const MainContainer = () => {
             <Routes>
                 <Route path='/home' element={<Home />} />
                 <Route path='/loan' element={<Loan />} />
-                <Route path='/VR3' />
-                <Route path='/VR4' />
+                <Route path='/return' element={<Return />} />
+                <Route path='/containers' element={<Containers />} />
                 <Route path='/VR5' />
             </Routes>
         </div>

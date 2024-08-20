@@ -23,3 +23,7 @@
 * {
     font-family: BarlowCondensed;
 }
+
+#addBtn {
+    box-shadow: #363740 0 0 5px 2px;
+}
