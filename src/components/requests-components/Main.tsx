@@ -32,11 +32,6 @@ export const Main = () => {
             Qty: 0,
         },
     ])
-    function handleOnChange(id: any, Qty: number) {
-        const newList = list
-        newList[id - 1].Qty = Qty;
-        setList(newList)
-    }
     function handlePopup(type: string) {
         if (type == "close") {
             document.getElementById("wrapper")?.classList.add("hidden")

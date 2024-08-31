@@ -7,8 +7,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='*' element={<BaseLayout />}></Route>
-          {/* <Route path='/p/' element={<BaseLayout />}></Route> */}
+          <Route path='/p/' element={<BaseLayout />}></Route>
+          <Route path='*' element={<AuthLayout />}></Route>
         </Routes>
       </BrowserRouter>
     </>
