@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
-import { Home } from '../../pages/Home'
-import { Loan } from '../../pages/Loan'
-import { Return } from '../../pages/Return'
-import { Containers } from '../../pages/Containers'
+import Home from '../../pages/Home'
+import Loan from '../../pages/Loan'
+import Return from '../../pages/Return'
+import Containers from '../../pages/Containers'
+import NotFound from '../layout-components/NotFound'
+import Requests from '../../pages/Requests'
 export const MainContainer = () => {
     return (
-        <div className="flex flex-col w-[calc(100%-250px)] h-full items-center bg-[#f5f5f9]">
+        <div className="flex flex-col w-[calc(100%-250px)] h-fit items-center bg-[#f5f5f9]">
             <header className="flex justify-center items-center w-full px-20 py-4 border-b-2 bg-cont-100 border-[#cfcfcf]">
                 <div className="flex w-full justify-between items-center">
                     <h2 className="font-bold text-lg">Hello, Vargha</h2>
@@ -18,11 +20,13 @@ export const MainContainer = () => {
                 </div>
             </header>
             <Routes>
-                <Route path='/home' element={<Home />} />
-                <Route path='/loan' element={<Loan />} />
-                <Route path='/return' element={<Return />} />
-                <Route path='/containers' element={<Containers />} />
-                <Route path='/VR5' />
+                <Route path='/p/home' element={<Home />} />
+                <Route path='/p/loan' element={<Loan />} />
+                <Route path='/p/return' element={<Return />} />
+                <Route path='/p/containers' element={<Containers />} />
+                <Route path='/p/requests' element={<Requests />} />
+
+                <Route path='/*' element={<NotFound />} />
             </Routes>
         </div>
     );

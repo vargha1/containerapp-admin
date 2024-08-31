@@ -18,6 +18,7 @@
     --cont-75: black;
     --cont-100: white;
     --cont-125: #DDE2FF;
+    --cont-150: #363740;
 }
 
 * {
@@ -26,4 +27,14 @@
 
 #addBtn {
     box-shadow: #363740 0 0 5px 2px;
+}
+
+.num::-webkit-inner-spin-button,
+.num::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+html {
+    background-color: #f5f5f9;
 }

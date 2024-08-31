@@ -2,7 +2,7 @@ import { SvgContainer } from "../icons/SvgContainer"
 
 export const Containers = () => {
     return (
-        <div className="flex flex-col items-center w-full bg-white">
+        <div className="flex flex-col items-center w-full bg-cont-100">
             <div className="flex items-center w-[90%] border-b-2 border-[#d9d9d9]">
                 <SvgContainer className="" fillColor="#757575" />
                 <div className="flex flex-col w-full p-12">
@@ -51,3 +51,4 @@ export const Containers = () => {
         </div>
     )
 }
+export default Containers;

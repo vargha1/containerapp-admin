@@ -6,12 +6,13 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        "cont":{
+      colors: {
+        "cont": {
           50: "var(--cont-50)",
           75: "var(--cont-75)",
           100: "var(--cont-100)",
           125: "var(--cont-125)",
+          150: "var(--cont-150)",
         },
       },
     },
