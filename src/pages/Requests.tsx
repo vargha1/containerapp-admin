@@ -10,9 +10,9 @@ export const Requests = () => {
         <>
             <div className='w-[90%] h-[100svh] flex flex-col items-center pt-8'>
                 <div className="flex w-full mb-4">
-                    <Link to="/p/requests?page=main" className={`${page == "main" ? "bg--cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 me-4 rounded-full shadow-lg `}>Request</Link>
-                    <Link to="/p/requests?page=pending" className={`${page == "pending" ? "bg--cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Pending</Link>
-                    <Link to="/p/requests?page=accepted" className={`${page == "accepted" ? "bg--cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Accepted</Link>
+                    <Link to="/p/requests?page=main" className={`${page == "main" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 me-4 rounded-full shadow-lg `}>Request</Link>
+                    <Link to="/p/requests?page=pending" className={`${page == "pending" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Pending</Link>
+                    <Link to="/p/requests?page=accepted" className={`${page == "accepted" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Accepted</Link>
                 </div>
                 {page == "main" ? <Main /> : ""}
                 {page == "pending" ? <Pending /> : ""}

@@ -20,12 +20,11 @@ export const MainContainer = () => {
                 </div>
             </header>
             <Routes>
-                <Route path='/p/home' element={<Home />} />
-                <Route path='/p/loan' element={<Loan />} />
-                <Route path='/p/return' element={<Return />} />
-                <Route path='/p/containers' element={<Containers />} />
-                <Route path='/p/requests' element={<Requests />} />
-
+                <Route path='/home' element={<Home />} />
+                <Route path='/loan' element={<Loan />} />
+                <Route path='/return' element={<Return />} />
+                <Route path='/containers' element={<Containers />} />
+                <Route path='/requests' element={<Requests />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
         </div>

@@ -79,7 +79,7 @@ export const Home = () => {
                     <SvgContainer className="absolute left-[60.2%] top-4 w-[6%]" fillColor="#757575" />
                     <Chart1 className="!w-[18%] !h-auto" />
                     <SvgContainer className="absolute left-[78.2%] top-4 w-[6%]" fillColor="#757575" />
-                    <div className="flex justify-center items-center bg--cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed">
+                    <div className="flex justify-center items-center bg-cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed">
                         <div className="flex justify-center items-center absolute bg-cont-100 w-[20px] h-[20px] right-1 top-0 rounded-full" id="addBtn">+</div>
                         <SvgContainer className="w-3/5 h-3/5" fillColor="white" />
                     </div>

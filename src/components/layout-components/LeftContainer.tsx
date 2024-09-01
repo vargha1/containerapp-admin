@@ -55,7 +55,7 @@ export const LeftContainer = () => {
         }
     }
     return (
-        <div className="flex flex-col items-center w-[250px] fixed top-0 bottom-0 left-0 bg--cont-150 text-cont-125">
+        <div className="flex flex-col items-center w-[250px] fixed top-0 bottom-0 left-0 bg-cont-150 text-cont-125">
             <h1 className="text-5xl text-cont-100 mt-6 mb-12">Admin</h1>
             <Link to="/p/home" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/p/home" || location.pathname == "/p/home/" ? ("bg-[#3e4049]") : ""}`}><SvgHome fillColor={location.pathname == "/p/home" || location.pathname == "/p/home/" ? "#fff" : "#60626E"} /> Home</Link>
             <Link to="/p/loan" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/p/loan" || location.pathname == "/p/loan/" ? ("bg-[#3e4049]") : ""}`}><SvgLoan fillColor={location.pathname == "/p/loan" || location.pathname == "/p/loan/" ? "#fff" : "#60626E"} /> Loan</Link>

@@ -101,9 +101,9 @@ export const Main = () => {
                     {list.map((item, index) => (
                         <div className="flex items-center w-full border-b-2 border-[#d9d9d9] py-6" key={index}>
                             <img src={item.imgSrc} alt="" />
-                            <button id={`plusBtn${item.id}`} className="flex justify-center items-center w-[40px] h-[40px] text-3xl text-cont-100 rounded-full bg--cont-150 ms-6" onClick={() => addPlate(item.id)}>+</button>
+                            <button id={`plusBtn${item.id}`} className="flex justify-center items-center w-[40px] h-[40px] text-3xl text-cont-100 rounded-full bg-cont-150 ms-6" onClick={() => addPlate(item.id)}>+</button>
                             <input type="number" id={`num${item.id}`} className="shadow-lg rounded-full w-[60px] h-fit py-2 outline-none ps-7 mx-3 num" value={item.Qty} onChange={event => list[item.id].Qty = parseInt(event.target.value)} />
-                            <button id={`minusBtn${item.id}`} className="flex justify-center items-center w-[40px] h-[40px] text-3xl text-cont-100 rounded-full bg--cont-150" onClick={() => removePlate(item.id)}>-</button>
+                            <button id={`minusBtn${item.id}`} className="flex justify-center items-center w-[40px] h-[40px] text-3xl text-cont-100 rounded-full bg-cont-150" onClick={() => removePlate(item.id)}>-</button>
                         </div>
                     ))}
                     <button className={`bg-[${getQty() > 0 ? "#363740" : "#0000ff"}] rounded-full fixed px-6 py-2 right-5 bottom-5 text-cont-100`} onClick={() => handlePopup("open")}>Send Request</button>
@@ -123,7 +123,7 @@ export const Main = () => {
                     ))}
                     <div className="flex w-full absolute bottom-4 px-10">
                         <button className="rounded-full w-[calc(33.33%-16px)] me-4 py-2 shadow-lg" onClick={() => handlePopup("close")}>No</button>
-                        <button className="rounded-full w-2/3 py-2 bg--cont-150 text-white" onClick={() => handlePopup("reset")}>Yes, send the Request</button>
+                        <button className="rounded-full w-2/3 py-2 bg-cont-150 text-white" onClick={() => handlePopup("reset")}>Yes, send the Request</button>
                     </div>
                 </div>
             </div>
