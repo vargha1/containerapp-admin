@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Login from "./auth-components/Login";
 import Register from "./auth-components/Register";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import NotFound from "../../components/layout-components/NotFound";
 import ForgotPassword from "./auth-components/ForgotPassword";
 
 export const Auth = () => {

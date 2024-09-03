@@ -1,6 +1,5 @@
-import { useState } from "react"
 export const Pending = () => {
-    let [pendingList, setPendingList] = useState([
+    let pendingList = [
         [
             { requestDate: "August 19" },
             {
@@ -199,7 +198,7 @@ export const Pending = () => {
                 Qty: 0,
             },
         ],
-    ])
+    ]
     return (
         <>
             <div className='w-[90%] h-[100svh] flex flex-wrap pt-8'>

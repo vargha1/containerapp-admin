@@ -4,7 +4,7 @@ import Pending from "../components/requests-components/Pending";
 import Accepted from "../components/requests-components/Accepted";
 
 export const Requests = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
     return (
         <>

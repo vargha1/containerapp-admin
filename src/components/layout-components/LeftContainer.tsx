@@ -8,7 +8,7 @@ import { Link, useLocation, useSearchParams } from "react-router-dom"
 
 export const LeftContainer = () => {
     let location = useLocation()
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
     let isOpen = false
     function handleDropDown() {
