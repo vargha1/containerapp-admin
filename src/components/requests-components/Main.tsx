@@ -106,7 +106,7 @@ export const Main = () => {
                             <button id={`minusBtn${item.id}`} className="flex justify-center items-center w-[40px] h-[40px] text-3xl text-cont-100 rounded-full bg-cont-150" onClick={() => removePlate(item.id)}>-</button>
                         </div>
                     ))}
-                    <button className={`bg-[${getQty() > 0 ? "#363740" : "#0000ff"}] rounded-full fixed px-6 py-2 right-5 bottom-5 text-cont-100`} onClick={() => handlePopup("open")}>Send Request</button>
+                    <button className={`bg-${getQty() > 0 ? "cont-150" : " bg-[#c4c4c4]"} rounded-full fixed px-6 py-2 right-5 bottom-5 text-cont-100`} onClick={() => handlePopup("open")}>Send Request</button>
                 </div>
             </div>
             <div id="wrapper" className="flex justify-center items-center fixed inset-0 hidden">
