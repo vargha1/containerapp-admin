@@ -219,7 +219,7 @@ export const Accepted = () => {
                             }
                         })}
                         <div className="flex justify-center py-3 bg-[#03C088] rounded-b-3xl">
-                            <p className="text-4xl text-cont-100">Accepted</p>
+                            <p className="text-2xl text-cont-100">Accepted</p>
                         </div>
                     </div>)
                 })}

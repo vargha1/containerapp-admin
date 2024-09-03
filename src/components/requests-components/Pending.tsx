@@ -205,15 +205,15 @@ export const Pending = () => {
                 {pendingList.map((list, index) => {
                     return (<div className="flex flex-col xl:w-[calc(25%-20px)] w-[calc(33.3333%-20px)] me-5 mb-5 rounded-xl bg-cont-100" key={index}>
                         <div className="flex w-full ps-5 py-3 bg-cont-150 rounded-t-3xl">
-                            <p className="text-white text-xl">{list[0].requestDate}</p>
+                            <p className="text-white text-2xl">{list[0].requestDate}</p>
                         </div>
                         {list.map((item, index) => {
                             if (index != 0) {
                                 return (
                                     <div className="flex items-center w-full py-1 ps-5" key={index}>
                                         <img src={item.imgSrc} className="w-[32px] h-[32px]" alt="" />
-                                        <p className="text-3xl rotate-45">+</p>
-                                        <h3 className="text-3xl">{item.Qty}</h3>
+                                        <p className="text-4xl rotate-45">+</p>
+                                        <h3 className="text-4xl">{item.Qty}</h3>
                                     </div>
                                 )
                             }
