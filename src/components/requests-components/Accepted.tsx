@@ -201,7 +201,7 @@ export const Accepted = () => {
     ]
     return (
         <>
-            <div className='w-[90%] h-[100svh] flex flex-wrap pt-8'>
+            <div className='w-[90%] flex flex-wrap pt-8'>
                 {pendingList.map((list, index) => {
                     return (<div className="flex flex-col xl:w-[calc(25%-20px)] w-[calc(33.3333%-20px)] me-5 mb-5 rounded-xl bg-cont-100" key={index}>
                         <div className="flex w-full ps-5 py-3 bg-[#03C088] rounded-t-3xl">
