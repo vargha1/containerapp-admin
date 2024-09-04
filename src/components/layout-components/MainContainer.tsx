@@ -5,7 +5,11 @@ import Return from '../../pages/Return'
 import Containers from '../../pages/Containers'
 import NotFound from '../layout-components/NotFound'
 import Requests from '../../pages/Requests'
+import { SvgContainer } from '../../icons/SvgContainer'
+import { useSearchParams } from 'react-router-dom'
 export const MainContainer = () => {
+    const [searchParams] = useSearchParams()
+    const page = searchParams.get('page')
     return (
         <div className="flex flex-col w-[calc(100%-250px)] h-fit items-center bg-[#f5f5f9]">
             <header className="flex justify-center items-center w-full px-20 py-4 border-b-2 bg-cont-100 border-[#cfcfcf]">
@@ -20,13 +24,18 @@ export const MainContainer = () => {
                 </div>
             </header>
             <Routes>
-                <Route path='/home' element={<Home />} />
-                <Route path='/loan' element={<Loan />} />
-                <Route path='/return' element={<Return />} />
-                <Route path='/containers' element={<Containers />} />
-                <Route path='/requests' element={<Requests />} />
+                <Route path='/p/home' element={<Home />} />
+                <Route path='/sp/home' element={<Home />} />
+                <Route path='/p/loan' element={<Loan />} />
+                <Route path='/p/return' element={<Return />} />
+                <Route path='/p/containers' element={<Containers />} />
+                <Route path='/p/requests' element={<Requests />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
+            <div className={`${page == "main" ? "hidden" : "flex"} justify-center items-center bg-cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed`}>
+                <div className="flex justify-center items-center absolute bg-cont-100 w-[20px] h-[20px] right-1 top-0 rounded-full" id="addBtn">+</div>
+                <SvgContainer className="w-3/5 h-3/5" fillColor="white" />
+            </div>
         </div>
     );
 }
