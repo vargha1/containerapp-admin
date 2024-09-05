@@ -8,6 +8,7 @@ import Requests from '../../pages/Requests'
 import { SvgContainer } from '../../icons/SvgContainer'
 import { useSearchParams } from 'react-router-dom'
 import QRGen from '../../pages/QRGen'
+import Shops from '../../pages/Shops'
 export const MainContainer = () => {
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
@@ -29,9 +30,11 @@ export const MainContainer = () => {
                 <Route path='/sp/home' element={<Home />} />
                 <Route path='/p/loan' element={<Loan />} />
                 <Route path='/p/return' element={<Return />} />
+                <Route path='/sp/shop' element={<Shops />} />
                 <Route path='/sp/qr' element={<QRGen />} />
                 <Route path='/p/containers' element={<Containers />} />
                 <Route path='/p/requests' element={<Requests />} />
+                <Route path='/sp/requests' element={<Requests />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
             <div className={`${page == "main" ? "hidden" : "flex"} justify-center items-center bg-cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed`}>
