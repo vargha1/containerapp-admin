@@ -7,6 +7,7 @@ import NotFound from '../layout-components/NotFound'
 import Requests from '../../pages/Requests'
 import { SvgContainer } from '../../icons/SvgContainer'
 import { useSearchParams } from 'react-router-dom'
+import QRGen from '../../pages/QRGen'
 export const MainContainer = () => {
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
@@ -28,6 +29,7 @@ export const MainContainer = () => {
                 <Route path='/sp/home' element={<Home />} />
                 <Route path='/p/loan' element={<Loan />} />
                 <Route path='/p/return' element={<Return />} />
+                <Route path='/sp/qr' element={<QRGen />} />
                 <Route path='/p/containers' element={<Containers />} />
                 <Route path='/p/requests' element={<Requests />} />
                 <Route path='/*' element={<NotFound />} />
