@@ -12,14 +12,29 @@ import Shops from '../../pages/Shops'
 export const MainContainer = () => {
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
+    function handleDrawer(state: string) {
+        const drawer = document.getElementById("drawer");
+        if (state == "open") {
+            drawer?.classList.remove("-left-[300%]")
+        }
+        if (state == "close") {
+            drawer?.classList.add("-left-[300%]")
+        }
+        console.log("asfdafd");
+    }
     return (
-        <div className="flex flex-col w-[calc(100%-250px)] h-fit items-center bg-[#f5f5f9]">
-            <header className="flex justify-center items-center w-full px-20 py-4 border-b-2 bg-cont-100 border-[#cfcfcf]">
+        <div className="flex flex-col md:w-[calc(100%-250px)] w-full items-center bg-[#f5f5f9]">
+            <header className="flex justify-center items-center w-full md:px-20 px-5 py-4 border-b-2 bg-cont-100 border-[#cfcfcf]">
                 <div className="flex w-full justify-between items-center">
+                    <div className="flex flex-col w-[40px] me-2 text-cont-150 md:hidden" onClick={() => handleDrawer("open")}>
+                        <hr className="bg-cont-150 border-cont-150" />
+                        <hr className="my-3 bg-cont-150 border-cont-150" />
+                        <hr className="bg-cont-150 border-cont-150" />
+                    </div>
                     <h2 className="font-bold text-lg">Hello, Vargha</h2>
                     <div className="flex items-center justify-center">
-                        <input type="search" name="srch" id="srch" className="mx-8 py-2 px-5 w-[250px] border-2 border-[#d1d1d1] rounded-full focus:outline-none" />
-                        <div className="w-[48px] h-[48px] ms-5" id="profileIcon">
+                        <input type="search" name="srch" id="srch" className="md:mx-8 mx-5 py-2 px-5 border-2 border-[#d1d1d1] rounded-full focus:outline-none" />
+                        <div className="w-[48px] h-[48px] md:ms-5" id="profileIcon">
                             <img src="/assets/almubdi.png" alt="profile" />
                         </div>
                     </div>

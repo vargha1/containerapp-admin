@@ -52,22 +52,22 @@ export const Home = () => {
             <div className="flex justify-center py-2 w-[90%] h-fit bg-cont-100 mt-10 rounded-lg">
                 {location.pathname == "/p/home" ? (
                     <>
-                        <div className="flex flex-col items-center text-4xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="text-2xl font-normal text-cont-50">Total Loans</span></div>
-                        <div className="flex flex-col items-center text-4xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="text-2xl font-normal text-cont-50">Loans</span></div>
-                        <div className="flex flex-col items-center text-4xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count3}<span className="text-2xl font-normal text-cont-50">Containers</span></div>
-                        <div className="flex flex-col items-center text-4xl font-bold w-1/4 px-6 py-2">{count4}<span className="text-2xl font-normal text-cont-50">Clients</span></div>
+                        <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Loans</span></div>
+                        <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="md:text-2xl text-lg font-normal text-cont-50">Loans</span></div>
+                        <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count3}<span className="md:text-2xl text-lg font-normal text-cont-50">Containers</span></div>
+                        <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2">{count4}<span className="md:text-2xl text-lg font-normal text-cont-50">Clients</span></div>
                     </>
                 ) : ""}
                 {location.pathname == "/sp/home" ? (
                     <>
-                        <div className="flex flex-col items-center text-4xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="text-2xl font-normal text-cont-50">Total Loans</span></div>
-                        <div className="flex flex-col items-center text-4xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="text-2xl font-normal text-cont-50">Total Containers</span></div>
-                        <div className="flex flex-col items-center text-4xl font-bold w-1/4 px-6 py-2">{count3}<span className="text-2xl font-normal text-cont-50">Total Shops</span></div>
+                        <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Loans</span></div>
+                        <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Containers</span></div>
+                        <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2">{count3}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Shops</span></div>
                     </>
                 ) : ""}
             </div>
-            <div className="flex w-[90%] py-3 h-fit mt-4">
-                <div className="flex flex-col p-5 w-2/5 me-[54px] bg-cont-100 rounded-lg">
+            <div className="flex md:flex-row flex-col md:items-start items-center w-[90%] py-3 mt-4">
+                <div className="flex flex-col p-5 md:w-2/5 w-full md:h-[366px] md:me-[54px] mb-10 md:mb-0 bg-cont-100 rounded-lg">
                     <h3 className="text-cont-50">Containers</h3>
                     <div className="w-[50%] flex items-center my-3">
                         <Chart1
@@ -76,12 +76,12 @@ export const Home = () => {
                         />
                     </div>
                 </div>
-                <div className="flex flex-col p-5 w-[calc(60%-54px)] bg-cont-100 rounded-lg">
+                <div className="flex flex-col p-5 md:w-[calc(60%-54px)] w-full bg-cont-100 rounded-lg">
                     <div className="flex w-full px-5 justify-between">
                         <h3 className="font-bold text-xl">Loan</h3>
                         <button>This Week</button>
                     </div>
-                    <div className="flex w-full">
+                    <div className="flex w-full md:h-auto h-[250px]">
                         <Chart2 />
                     </div>
                 </div>
