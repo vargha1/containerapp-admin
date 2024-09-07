@@ -59,16 +59,16 @@ export const LeftContainer = () => {
     function handleDrawer(state: string) {
         const drawer = document.getElementById("drawer");
         if (state == "open") {
-            drawer?.classList.remove("-left-[300%]")
+            drawer?.classList.remove("!-left-[300%]")
         }
         if (state == "close") {
-            drawer?.classList.add("-left-[300%]")
+            drawer?.classList.add("!-left-[300%]")
         }
     }
     return (
         <>
             {location.pathname.includes("/p/") ?
-                <div id="drawer" className="flex flex-col md:items-center md:w-[250px] w-full fixed top-0 bottom-0 md:left-0 -left-[300%] z-10 bg-cont-150 text-cont-125 transition-all duration-300">
+                <div id="drawer" className="flex flex-col md:items-center md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={() => handleDrawer("close")}>+</p>
                     <div className="flex flex-col md:w-full md:items-center">
                         <h1 className="text-5xl text-cont-100 mt-6 mb-12 md:ms-0 ms-5">Admin</h1>
@@ -86,7 +86,7 @@ export const LeftContainer = () => {
                 </div> : ""
             }
             {location.pathname.includes("/sp/") ?
-                <div id="drawer" className="flex flex-col md:items-center items-start md:w-[250px] w-full fixed top-0 bottom-0 md:left-0 -left-[300%] z-10 bg-cont-150 text-cont-125 transition-all duration-300">
+                <div id="drawer" className="flex flex-col md:items-center items-start md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={() => handleDrawer("close")}>+</p>
                     <h1 className="text-5xl text-cont-100 mt-6 mb-12 md:ms-0 ms-5">Admin</h1>
                     <Link onClick={() => handleDrawer("close")} to="/sp/home" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/home" || location.pathname == "/home/" ? ("bg-[#3e4049]") : ""}`}><SvgHome fillColor={location.pathname == "/home" || location.pathname == "/home/" ? "#fff" : "#60626E"} /> Home</Link>

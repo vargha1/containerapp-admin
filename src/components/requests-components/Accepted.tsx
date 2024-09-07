@@ -203,7 +203,7 @@ export const Accepted = () => {
         <>
             <div className='w-[90%] flex flex-wrap pt-8'>
                 {pendingList.map((list, index) => {
-                    return (<div className="flex flex-col xl:w-[calc(25%-20px)] w-[calc(33.3333%-20px)] me-5 mb-5 rounded-xl bg-cont-100" key={index}>
+                    return (<div className="flex flex-col flex-wrap xl:w-[calc(25%-20px)] lg:w-[calc(33.3333%-20px)] w-full me-5 mb-5 rounded-xl bg-cont-100" key={index}>
                         <div className={`flex justify-between w-full px-5 py-3 ${location.pathname.includes("/sp") ? "bg-cont-150" : ""} ${location.pathname.includes("/p/") ? "bg-[#03C088]" : ""} rounded-t-3xl`}>
                             {location.pathname.includes("/sp/") ? <p className="text-cont-100 text-2xl">SHOP NAME</p> : ""}
                             <p className="text-white text-lg">{list[0].requestDate}</p>

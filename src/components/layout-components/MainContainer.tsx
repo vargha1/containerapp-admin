@@ -15,10 +15,10 @@ export const MainContainer = () => {
     function handleDrawer(state: string) {
         const drawer = document.getElementById("drawer");
         if (state == "open") {
-            drawer?.classList.remove("-left-[300%]")
+            drawer?.classList.remove("!-left-[300%]")
         }
         if (state == "close") {
-            drawer?.classList.add("-left-[300%]")
+            drawer?.classList.add("!-left-[300%]")
         }
         console.log("asfdafd");
     }
@@ -31,7 +31,7 @@ export const MainContainer = () => {
                         <hr className="my-3 bg-cont-150 border-cont-150" />
                         <hr className="bg-cont-150 border-cont-150" />
                     </div>
-                    <h2 className="font-bold text-lg">Hello, Vargha</h2>
+                    <h2 className="font-bold md:text-lg text-[14px] leading-5">Hello, Vargha</h2>
                     <div className="flex items-center justify-center">
                         <input type="search" name="srch" id="srch" className="md:mx-8 mx-5 py-2 px-5 border-2 border-[#d1d1d1] rounded-full focus:outline-none" />
                         <div className="w-[48px] h-[48px] md:ms-5" id="profileIcon">
