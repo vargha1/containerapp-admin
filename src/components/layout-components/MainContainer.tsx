@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import Home from '../../pages/Home'
 import Loan from '../../pages/Loan'
 import Return from '../../pages/Return'
@@ -9,6 +9,8 @@ import { SvgContainer } from '../../icons/SvgContainer'
 import { useSearchParams } from 'react-router-dom'
 import QRGen from '../../pages/QRGen'
 import Shops from '../../pages/Shops'
+import { SvgSearch } from '../../icons/SvgSearch'
+import Support from '../../pages/Support'
 export const MainContainer = () => {
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
@@ -33,6 +35,7 @@ export const MainContainer = () => {
                     </div>
                     <h2 className="font-bold md:text-lg text-[14px] leading-5">Hello, Vargha</h2>
                     <div className="flex items-center justify-center">
+                        <SvgSearch fillColor="#000" className="relative left-[5.5rem]" />
                         <input type="search" name="srch" id="srch" className="md:mx-8 mx-5 py-2 px-5 border-2 border-[#d1d1d1] rounded-full focus:outline-none" />
                         <div className="w-[48px] h-[48px] md:ms-5" id="profileIcon">
                             <img src="/assets/almubdi.png" alt="profile" />
@@ -50,12 +53,14 @@ export const MainContainer = () => {
                 <Route path='/p/containers' element={<Containers />} />
                 <Route path='/p/requests' element={<Requests />} />
                 <Route path='/sp/requests' element={<Requests />} />
+                <Route path='/p/support' element={<Support />} />
+                <Route path='/sp/support' element={<Support />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
-            <div className={`${page == "main" ? "hidden" : "flex"} justify-center items-center bg-cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed`}>
+            <Link to="/p/requests?page=main" className={`${page == "main" || location.pathname.includes("/sp") ? "hidden" : "flex"} justify-center items-center bg-cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed`}>
                 <div className="flex justify-center items-center absolute bg-cont-100 w-[20px] h-[20px] right-1 top-0 rounded-full" id="addBtn">+</div>
                 <SvgContainer className="w-3/5 h-3/5" fillColor="white" />
-            </div>
+            </Link>
         </div>
     );
 }

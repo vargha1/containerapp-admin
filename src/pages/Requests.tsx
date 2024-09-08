@@ -10,7 +10,7 @@ export const Requests = () => {
     return (
         <>
             <div className='w-[90%] h-[100svh] flex flex-col items-center pt-8'>
-                <div className="flex w-full mb-4">
+                <div className="flex flex-wrap w-full mb-4">
                     {location.pathname.includes("/p/") ?
                         <>
                             <Link to="/p/requests?page=main" className={`${page == "main" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 me-4 rounded-full shadow-lg `}>Request</Link>

@@ -18,9 +18,9 @@ export const Login = () => {
                 <div className="flex justify-between mt-3">
                     <div className="flex">
                         <input type="checkbox" name="remember" id="remember" />
-                        <label htmlFor="remember" className="ps-3">Remember me</label>
+                        <label htmlFor="remember" className="ps-3 text-sm">Remember me</label>
                     </div>
-                    <Link to="/auth/forgotPassword">Forgot Password?</Link>
+                    <Link to="/auth/forgotPassword" className="text-sm">Forgot Password?</Link>
                 </div>
                 <div className="flex justify-end w-full">
                     <input type="submit" value="Login" className="w-1/2 max-w-[256px] py-3 rounded-full bg-cont-150 text-cont-100 mt-5" />
