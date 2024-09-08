@@ -67,7 +67,7 @@ export const LeftContainer = () => {
     }
     return (
         <>
-            {location.pathname.includes("/p/") ?
+            {location.pathname.includes("/p") ?
                 <div id="drawer" className="flex flex-col md:items-center md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={() => handleDrawer("close")}>+</p>
                     <div className="flex flex-col md:w-full md:items-center">
@@ -85,7 +85,7 @@ export const LeftContainer = () => {
                     </div>
                 </div> : ""
             }
-            {location.pathname.includes("/sp/") ?
+            {location.pathname.includes("/sp") ?
                 <div id="drawer" className="flex flex-col md:items-center items-start md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={() => handleDrawer("close")}>+</p>
                     <h1 className="text-5xl text-cont-100 mt-6 mb-12 md:ms-0 ms-5">Admin</h1>
