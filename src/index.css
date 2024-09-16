@@ -6,6 +6,10 @@
     font-family: BarlowCondensed;
     src: url("/assets/BarlowCondensed-Regular.ttf");
 }
+@font-face {
+    font-family: Megrim;
+    src: url("/assets/Megrim-Regular.ttf");
+}
 
 #root {
     display: flex;
