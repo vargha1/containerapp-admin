@@ -70,8 +70,8 @@ export const LeftContainer = () => {
             {location.pathname.includes("/p") ?
                 <div id="drawer" className="flex flex-col items-center md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={e => { e.stopPropagation(); handleDrawer("close") }}>+</p>
-                    <h1 className="text-5xl font-[Megrim]"><span className="text-[#0b9595] font-[Megrim]">Eco</span> P<span className="text-[#0b9595] font-[Megrim]">a</span>ck</h1>
-                    <h1 className="text-2xl text-cont-100 mt-6 mb-12 md:ms-0 ms-5">Admin</h1>
+                    <h1 className="text-4xl font-[Megrim] mt-5 w-full ps-8"><span className="text-[#0b9595] font-[Megrim]">Eco</span> P<span className="text-[#0b9595] font-[Megrim]">a</span>ck</h1>
+                    <h1 className="text-xl text-cont-100 w-full ps-6 md:px-8 mb-6 md:mb-12 md:ms-0 ms-5">Admin</h1>
                     <Link onClick={e => { e.stopPropagation(); handleDrawer("close") }} to="/p/home" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/p/home" || location.pathname == "/p/home/" ? "bg-[#3e4049]" : ""}`}><SvgHome fillColor={location.pathname == "/p/home" || location.pathname == "/p/home/" ? "#fff" : "#60626E"} /> Home</Link>
                     <Link onClick={e => { e.stopPropagation(); handleDrawer("close") }} to="/p/loan" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/p/loan" || location.pathname == "/p/loan/" ? "bg-[#3e4049]" : ""}`}><SvgLoan fillColor={location.pathname == "/p/loan" || location.pathname == "/p/loan/" ? "#fff" : "#60626E"} /> Loan</Link>
                     <Link onClick={e => { e.stopPropagation(); handleDrawer("close") }} to="/p/return" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/p/return" || location.pathname == "/p/return/" ? "bg-[#3e4049]" : ""}`}><SvgReturn fillColor={location.pathname == "/p/return" || location.pathname == "/p/return/" ? "#fff" : "#60626E"} /> Return</Link>
@@ -87,8 +87,8 @@ export const LeftContainer = () => {
             {location.pathname.includes("/sp") ?
                 <div id="drawer" className="flex flex-col items-center md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={e => { e.stopPropagation(); handleDrawer("close") }}>+</p>
-                    <h1 className="text-5xl font-[Megrim]"><span className="text-[#0b9595] font-[Megrim]">Eco</span> P<span className="text-[#0b9595] font-[Megrim]">a</span>ck</h1>
-                    <h1 className="text-2xl text-cont-100 md:w-full md:px-8 mb-12 md:ms-0 ms-5">Super admin</h1>
+                    <h1 className="text-4xl font-[Megrim] mt-5 w-full ps-8"><span className="text-[#0b9595] font-[Megrim]">Eco</span> P<span className="text-[#0b9595] font-[Megrim]">a</span>ck</h1>
+                    <h1 className="text-xl text-cont-100 w-full ps-6 md:px-8 mb-12 md:ms-0 ms-5">Super admin</h1>
                     <Link onClick={e => { e.stopPropagation(); handleDrawer("close") }} to="/sp/home" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/sp/home" || location.pathname == "/sp/home/" ? "bg-[#3e4049]" : ""}`}><SvgHome fillColor={location.pathname == "/sp/home" || location.pathname == "/sp/home/" ? "#fff" : "#60626E"} /> Home</Link>
                     <Link onClick={e => { e.stopPropagation(); handleDrawer("close") }} to="/sp/shop" className={`w-full flex py-3 ps-6 hover:bg-[#3e4049] ${location.pathname == "/sp/shop" || location.pathname == "/sp/shop/" ? "bg-[#3e4049]" : ""}`}><SvgShop fillColor={location.pathname == "/sp/shop" || location.pathname == "/sp/shop/" ? "#fff" : "#60626E"} /> Shop List</Link>
                     <div className="cursor-pointer flex w-full py-3 ps-6 hover:bg-[#3e4049]" onClick={handleDropDown} >Request's Container</div>

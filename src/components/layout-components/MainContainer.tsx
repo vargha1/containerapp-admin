@@ -34,7 +34,7 @@ export const MainContainer = () => {
                         <hr className="bg-cont-150 border-cont-150" />
                     </div>
                     <h2 className="font-bold md:text-lg text-[14px] leading-5">Hello, Vargha</h2>
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center relative">
                         <SvgSearch fillColor="#000" className="absolute left-[7rem]" />
                         <input type="search" name="srch" id="srch" className="md:me-8 me-5 py-2 px-5 border-2 border-[#d1d1d1] rounded-full focus:outline-none" />
                         <div className="w-[48px] h-[48px] md:ms-5" id="profileIcon">
