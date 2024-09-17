@@ -12,6 +12,8 @@ export const QRGen = () => {
     function handleChange2(event: any) {
         setSelectedOption2(event.target.value)
     }
+    handleChange1("1")
+    handleChange2("1")
     function handleChange3(event: any) {
         setSelectedOption3(event.target.value.slice(8))
     }
