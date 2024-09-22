@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const QRGen = () => {
     const [selectedOption1, setSelectedOption1] = useState("0")
     const [selectedOption2, setSelectedOption2] = useState("0")
-    const [selectedOption3, setSelectedOption3] = useState("0")
-    const [qty, setQty] = useState(0)
+    const [selectedOption3, setSelectedOption3] = useState("1")
+    const [qty, setQty] = useState("0")
 
-    function handleChange2(event: any) {
-        setSelectedOption2(event.target.value)
-    }
+    useEffect(() => {
+        setQty("1")
+    }, [])
     function handleChange3(event: any) {
+        console.log(event.target.value.slice(8))
         setSelectedOption3(event.target.value.slice(8))
     }
     function handleQty(event: any) {
-        setQty(event.target.value)
+        if (event.target.value > 0) {
+            setQty(event.target.value)
+        }
     }
     let countrySelector = document.getElementById("country")
     let containerModelSelector = document.getElementById("containerModel")
@@ -82,12 +85,14 @@ export const QRGen = () => {
         item.addEventListener("click", () => {
             countrySelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
             setSelectedOption1("1")
-            console.log("abdfas");
+            console.log("asdfasdf");
         })
     })
     document.querySelectorAll(".item2").forEach(item => {
         item.addEventListener("click", () => {
             containerModelSelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
+            setSelectedOption2("1")
+            console.log("asdfasdf");
         })
     })
     return (
@@ -149,15 +154,15 @@ export const QRGen = () => {
                                     filterList2(inputT.value)
                                 }} />
                         </div>
-                        <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(2)} onChange={handleChange2}>Container model</div>
+                        <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(2)}>Container model</div>
                     </div>
-                    <input type="date" name="date" id="date" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" onChange={handleChange3} />
-                    <input type="number" value={qty} placeholder="Quantity" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="num" id="num" onChange={handleQty} />
+                    <input type="date" name="date" id="date" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" onChange={(e) => handleChange3(e)} />
+                    <input type="number" value={qty} placeholder="Quantity" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="num" id="num" onChange={(e) => handleQty(e)} />
                 </div>
                 <div className="flex flex-col items-center md:relative -top-5">
                     <img src="/assets/QR.png" alt="QR" />
-                    <button className={`flex justify-center w-[80%] rounded-full text-cont-100 ${((parseInt(selectedOption1) - 1) * (parseInt(selectedOption2) - 1) * (parseInt(selectedOption3))) > 0 ? "bg-[#03C088]" : "bg-[#BFC3C2]"} text-cont100 py-2`}>Download</button>
-                    <p className="text-[#03C088]">{((parseInt(selectedOption1) - 1) * (parseInt(selectedOption2) - 1) * (parseInt(selectedOption3))) > 0 ? qty : ""}</p>
+                    <button className={`flex justify-center w-[80%] rounded-full text-cont-100 ${((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? "bg-[#03C088]" : "bg-[#BFC3C2]"} text-cont100 py-2`}>Download</button>
+                    <p className="text-[#03C088]">{((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? qty : ""}</p>
                 </div>
             </div>
         </div>

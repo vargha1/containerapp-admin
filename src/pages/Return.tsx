@@ -1,4 +1,17 @@
+import { useEffect } from "react";
+import api from "../api/users.ts"
+
 export const Return = () => {
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await api.get("/users")
+            } catch (err) {
+
+            }
+        }
+    }, [])
+
     return (
         <div className='w-full flex justify-center items-center'>
             <table className="w-[90%] rounded-md border-2 border-[#d9d9d9] border-separate border-spacing-0 bg-cont-100 my-12">
