@@ -11,6 +11,7 @@ import QRGen from '../../pages/QRGen'
 import Shops from '../../pages/Shops'
 import { SvgSearch } from '../../icons/SvgSearch'
 import Support from '../../pages/Support'
+import Profile from '../../pages/Profile'
 export const MainContainer = () => {
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
@@ -24,9 +25,35 @@ export const MainContainer = () => {
         }
         console.log("asfdafd");
     }
+    let isOpen = false;
+    function handleProfile(action: string) {
+        if (action == "open") {
+            document.getElementById("profileDrawer")?.classList.remove("invisible")
+            document.getElementById("cover2")?.classList.remove("invisible")
+            document.getElementById("profileDrawer")?.classList.remove("-top-20")
+            isOpen = true;
+        } else if (action == "close") {
+            document.getElementById("profileDrawer")?.classList.add("invisible")
+            document.getElementById("cover2")?.classList.add("invisible")
+            document.getElementById("profileDrawer")?.classList.add("-top-20")
+            isOpen = false;
+        }
+        if (action == "toggle") {
+            if (isOpen) {
+                document.getElementById("profileDrawer")?.classList.add("invisible")
+                document.getElementById("cover2")?.classList.add("invisible")
+                document.getElementById("profileDrawer")?.classList.add("-top-20")
+            } else {
+                document.getElementById("profileDrawer")?.classList.remove("invisible")
+                document.getElementById("cover2")?.classList.remove("invisible")
+                document.getElementById("profileDrawer")?.classList.remove("-top-20")
+            }
+            isOpen = !isOpen
+        }
+    }
     return (
         <div className="flex flex-col md:w-[calc(100%-250px)] w-full items-center bg-[#f5f5f9]">
-            <header className="flex justify-center items-center w-full md:px-20 px-5 py-4 border-b-2 bg-cont-100 border-[#cfcfcf]">
+            <header className="flex justify-center items-center w-full md:px-20 px-5 py-4 border-b-2 bg-cont-100 border-[#cfcfcf] bg-white relative z-[20]">
                 <div className="flex w-full justify-between items-center">
                     <div className="flex flex-col w-[40px] me-2 text-cont-150 md:hidden" onClick={() => handleDrawer("open")}>
                         <hr className="bg-cont-150 border-cont-150" />
@@ -37,12 +64,18 @@ export const MainContainer = () => {
                     <div className="flex items-center justify-center relative">
                         <SvgSearch fillColor="#000" className="absolute left-[7rem]" />
                         <input type="search" name="srch" id="srch" className="md:me-8 me-5 py-2 px-5 border-2 border-[#d1d1d1] rounded-full focus:outline-none" />
-                        <div className="w-[48px] h-[48px] md:ms-5" id="profileIcon">
+                        <div className="w-[48px] h-[48px] md:ms-5 p-[8px] rounded-full border-gray-400 border-[1px]" onClick={() => handleProfile("toggle")} id="profileIcon">
                             <img src="/assets/almubdi.png" alt="profile" />
                         </div>
                     </div>
                 </div>
             </header>
+            <div className="flex flex-col fixed top-[83px] shadow-[0_0px_15px_-5px] rounded-lg right-5 px-12 py-2 bg-white -top-20 z-[5] invisible transition-all duration-300" id="profileDrawer">
+                <p>Potato hut</p>
+                <Link to="/p/profile" className="py-2" onClick={() => handleProfile("close")}>My Profile</Link>
+                <Link to="/p/home" onClick={() => handleProfile("close")}>Sign Out</Link>
+            </div>
+            <div className="fixed top-0 right-0 bottom-0 md:left-[250px] invisible" id="cover2" onClick={() => handleProfile("close")}></div>
             <Routes>
                 <Route path='/p/home' element={<Home />} />
                 <Route path='/sp/home' element={<Home />} />
@@ -55,6 +88,7 @@ export const MainContainer = () => {
                 <Route path='/sp/requests' element={<Requests />} />
                 <Route path='/p/support' element={<Support />} />
                 <Route path='/sp/support' element={<Support />} />
+                <Route path='/p/profile' element={<Profile />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
             <Link to="/p/requests?page=main" className={`${page == "main" || location.pathname.includes("/sp") ? "hidden" : "flex"} justify-center items-center bg-cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed`}>
