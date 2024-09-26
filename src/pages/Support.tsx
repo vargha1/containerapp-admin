@@ -1,25 +1,21 @@
-import { useState } from "react";
 import { SvgArrow } from "../icons/SvgArrow";
 
 export const Support = () => {
     var isOpen = false;
-    const [selected, setSelected] = useState(0)
 
     function handleFAQ(index: any) {
-        if (selected != 0) {
-            const item = document.getElementById(`faqItem${index}`)
-            const content = item?.nextElementSibling
-            if (isOpen) {
-                content?.classList.add("invisible")
-                content?.classList.add("max-h-0")
-                content?.classList.remove("max-h-[72px]")
-                isOpen = false
-            } else {
-                content?.classList.remove("invisible")
-                content?.classList.remove("max-h-0")
-                content?.classList.add("max-h-[72px]")
-                isOpen = true
-            }
+        const item = document.getElementById(`faqItem${index}`)
+        const content = item?.nextElementSibling
+        if (isOpen) {
+            content?.classList.add("invisible")
+            content?.classList.add("max-h-0")
+            content?.classList.remove("max-h-[72px]")
+            isOpen = false
+        } else {
+            content?.classList.remove("invisible")
+            content?.classList.remove("max-h-0")
+            content?.classList.add("max-h-[72px]")
+            isOpen = true
         }
     }
 

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SvgLocation } from "../icons/SvgLocation";
 import { SvgLock } from "../icons/SvgLock";
 import { SvgShowPwd } from "../icons/SvgShowPwd";
 import { SvgApply } from "../icons/SvgApply";
+import shops_api from "../api/shops";
 
 export const Shops = () => {
     const [visiblityState, setVisiblityState] = useState("password")
@@ -15,6 +16,25 @@ export const Shops = () => {
         document.getElementById("passChanger")?.classList.add("invisible")
         document.getElementById("cover")?.classList.add("invisible")
     }
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await shops_api.get("/api/v0/shops/shop")
+                console.log(response);
+            } catch (err: any) {
+                if (err.response) {
+                    console.log(err.response.data)
+                    console.log(err.response.status)
+                    console.log(err.response.headers)
+                } else {
+                    console.log(`Error: ${err.message}`)
+                }
+            }
+        }
+        fetchUsers()
+    }, [])
+
     return (
         <div className='w-full flex justify-center items-center'>
             <table className="md:w-[90%] w-full rounded-md border-2 border-[#d9d9d9] border-separate border-spacing-0 bg-cont-100 my-12">
@@ -29,6 +49,7 @@ export const Shops = () => {
                         <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">Actions</td>
                     </tr>
                 </thead>
+                { }
                 <tbody>
                     <tr>
                         <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
