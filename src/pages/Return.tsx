@@ -1,15 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import api from "../api/users.ts"
 
 export const Return = () => {
+    const [imgUrl, setImgUrl] = useState("")
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await api.get("/users")
-            } catch (err) {
-
+                const response = await api.get("/posts")
+                setImgUrl(response.data[0].image)
+            } catch (err: any) {
+                if (err.response) {
+                    console.log(err.response.data)
+                    console.log(err.response.status)
+                    console.log(err.response.headers)
+                } else {
+                    console.log(`Error: ${err.message}`)
+                }
             }
         }
+        fetchUsers()
     }, [])
 
     return (
