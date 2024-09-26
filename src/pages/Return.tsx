@@ -20,7 +20,7 @@ export const Return = () => {
         }
         fetchUsers()
     }, [])
-
+    imgUrl
     return (
         <div className='w-full flex justify-center items-center'>
             <table className="w-[90%] rounded-md border-2 border-[#d9d9d9] border-separate border-spacing-0 bg-cont-100 my-12">

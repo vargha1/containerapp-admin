@@ -10,6 +10,7 @@ export const Shops = () => {
     function passChangerOpen(id: number) {
         document.getElementById("passChanger")?.classList.remove("invisible")
         document.getElementById("cover")?.classList.remove("invisible")
+        console.log(id)
     }
 
     function passChangerClose() {
