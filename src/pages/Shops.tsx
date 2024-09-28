@@ -21,7 +21,11 @@ export const Shops = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await shops_api.get("/api/v0/shops/shop")
+                const response = await shops_api.get("/api/v0/shops/shop", {
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                    }
+                })
                 console.log(response);
             } catch (err: any) {
                 if (err.response) {
