@@ -17,16 +17,12 @@ export const Shops = () => {
         document.getElementById("passChanger")?.classList.add("invisible")
         document.getElementById("cover")?.classList.add("invisible")
     }
-
+    const [shopList, setShopList] = useState<any[]>([])
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await shops_api.get("/api/v0/shops/shop", {
-                    headers: {
-                        "Access-Control-Allow-Origin": "*",
-                    }
-                })
-                console.log(response);
+                const response = await shops_api.get("/api/v0/shops/shop")
+                setShopList(response.data)
             } catch (err: any) {
                 if (err.response) {
                     console.log(err.response.data)
@@ -54,152 +50,21 @@ export const Shops = () => {
                         <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">Actions</td>
                     </tr>
                 </thead>
-                { }
                 <tbody>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">Shop@gmail.com</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 py-3">SHOP NAME</td>
-                        <td className="text-[10px] md:text-[16px] py-3">Date</td>
-                        <td className="text-[10px] md:text-[16px] py-3">Guarantee</td>
-                        <td className="text-[10px] md:text-[16px] py-3">97123433333</td>
-                        <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
-                        <td className="text-[10px] md:text-[16px*d9]"><SvgLock fillColor="#292D32" /></td>
-                        <td className="text-[10px] md:text-[16px] 20-3">
-                            <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
-                            <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
-                        </td>
-                    </tr>
+                    {shopList!.map((shop, index) => (
+                        <tr key={index}>
+                            <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">{shop.name}</td>
+                            <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
+                            <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.email}</td>
+                            <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.phone}</td>
+                            <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(1)} /></td>
+                            <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
+                            <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] w-[20%]">
+                                <button className="md:mx-1 xl:mx-2 md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#03C088] text-cont-100 rounded-full">Activate</button>
+                                <button className="md:px-1 xl:px-4 text-[8px] md:text-[10px] lg:text-[12px] xl:text-[14px] px-1 py-1 bg-[#FF928B] text-cont-100 rounded-full">Deactivate</button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             <div className="flex items-center rounded-full p-2 shadow-[0_0px_15px_-3px] z-20 fixed top-1/2 bg-white select-none invisible" id="passChanger">
