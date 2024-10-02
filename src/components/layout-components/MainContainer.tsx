@@ -53,7 +53,7 @@ export const MainContainer = () => {
     }
     return (
         <div className="flex flex-col md:w-[calc(100%-250px)] w-full items-center bg-[#f5f5f9]">
-            <header className="flex justify-center items-center w-full md:px-20 px-5 py-4 border-b-2 bg-cont-100 border-[#cfcfcf] bg-white relative z-[20]">
+            <header className="flex justify-center items-center w-full md:px-20 px-5 py-4 border-b-2 bg-cont-100 border-[#cfcfcf] bg-white relative">
                 <div className="flex w-full justify-between items-center">
                     <div className="flex flex-col w-[40px] me-2 text-cont-150 md:hidden" onClick={() => handleDrawer("open")}>
                         <hr className="bg-cont-150 border-cont-150" />
