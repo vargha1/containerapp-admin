@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import Home from '../../pages/Home'
 import Loan from '../../pages/Loan'
 import Return from '../../pages/Return'
@@ -12,7 +12,10 @@ import Shops from '../../pages/Shops'
 import { SvgSearch } from '../../icons/SvgSearch'
 import Support from '../../pages/Support'
 import Profile from '../../pages/Profile'
-export const MainContainer = () => {
+import { useEffect } from 'react'
+
+export const MainContainer = ({ isLogged, setIsLogged }: any) => {
+    const nav = useNavigate()
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
     function handleDrawer(state: string) {
@@ -51,6 +54,12 @@ export const MainContainer = () => {
             isOpen = !isOpen
         }
     }
+    useEffect(() => {
+        if (localStorage.getItem("loginStatus") == "") {
+            nav("/auth/login/")
+            return
+        }
+    }, [])
     return (
         <div className="flex flex-col md:w-[calc(100%-250px)] w-full items-center bg-[#f5f5f9]">
             <header className="flex justify-center items-center w-full md:px-20 px-5 py-4 border-b-2 bg-cont-100 border-[#cfcfcf] bg-white relative">
@@ -73,22 +82,22 @@ export const MainContainer = () => {
             <div className="flex flex-col fixed top-[83px] shadow-[0_0px_15px_-5px] rounded-lg right-5 px-12 py-2 bg-white -top-20 z-[5] invisible transition-all duration-300" id="profileDrawer">
                 <p>Potato hut</p>
                 <Link to="/p/profile" className="py-2" onClick={() => handleProfile("close")}>My Profile</Link>
-                <Link to="/p/home" onClick={() => handleProfile("close")}>Sign Out</Link>
+                <Link to="/p/home" onClick={() => { handleProfile("close"); setIsLogged("") }}>Sign Out</Link>
             </div>
             <div className="fixed top-0 right-0 bottom-0 md:left-[250px] invisible" id="cover2" onClick={() => handleProfile("close")}></div>
             <Routes>
-                <Route path='/p/home' element={<Home />} />
-                <Route path='/sp/home' element={<Home />} />
-                <Route path='/p/loan' element={<Loan />} />
-                <Route path='/p/return' element={<Return />} />
+                <Route path='/home' element={<Home />} />
+                {/* <Route path='/sp/home' element={<Home />} /> */}
+                <Route path='/loan' element={<Loan />} />
+                <Route path='/return' element={<Return />} />
                 <Route path='/sp/shop' element={<Shops />} />
                 <Route path='/sp/qr' element={<QRGen />} />
-                <Route path='/p/containers' element={<Containers />} />
-                <Route path='/p/requests' element={<Requests />} />
+                <Route path='/containers' element={<Containers />} />
+                <Route path='/requests' element={<Requests />} />
                 <Route path='/sp/requests' element={<Requests />} />
-                <Route path='/p/support' element={<Support />} />
+                <Route path='/support' element={<Support />} />
                 <Route path='/sp/support' element={<Support />} />
-                <Route path='/p/profile' element={<Profile />} />
+                <Route path='/profile' element={<Profile />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
             <Link to="/p/requests?page=main" className={`${page == "main" || location.pathname.includes("/sp") ? "hidden" : "flex"} justify-center items-center bg-cont-150 w-[75px] h-[75px] rounded-full bottom-8 right-8 fixed`}>

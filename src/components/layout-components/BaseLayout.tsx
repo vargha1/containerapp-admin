@@ -2,12 +2,11 @@
 import { LeftContainer } from "./LeftContainer"
 import { MainContainer } from "./MainContainer"
 
-export const BaseLayout = () => {
-
+export const BaseLayout = ({ isLogged, setIsLogged }: any) => {
     return (
         <div className='w-full flex justify-end items-center'>
-            <LeftContainer />
-            <MainContainer />
+            <LeftContainer setIsLogged={setIsLogged} />
+            <MainContainer isLogged={isLogged} setIsLogged={setIsLogged} />
         </div>
     )
 }

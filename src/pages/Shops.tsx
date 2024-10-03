@@ -21,7 +21,11 @@ export const Shops = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await shops_api.get("/api/v0/shops/shop")
+                const response = await shops_api.get("/api/v0/shops/shop", {
+                    headers: {
+                        "Authorization": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI4MDQzMTcyLCJpYXQiOjE3Mjc5NTY3NzIsImp0aSI6ImYyOGQ1NGZiYjRlYjQ5MTg4ZDllNTAxMzhmOTVmYzFlIiwidXNlcl9pZCI6Mn0.wsC2L4HPSKYwleTbuc6GXrMcsBl5O9Fp9eBCM7onxmM"
+                    }
+                })
                 setShopList(response.data)
             } catch (err: any) {
                 if (err.response) {

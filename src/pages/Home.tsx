@@ -4,8 +4,10 @@ import { Chart2 } from "../components/home-components/Chart2"
 import HomeContainers from "../components/home-components/HomeContainers";
 import { useLocation } from "react-router-dom";
 import SuperHomeShops from "../components/home-components/SuperHomeShops";
+import { getLog } from "./auth/auth-components/Login";
 
 export const Home = () => {
+    const res = getLog()
     const location = useLocation()
     const [count1, setCount1] = useState(0);
     const [count2, setCount2] = useState(0);
@@ -50,7 +52,7 @@ export const Home = () => {
     return (
         <div className='flex flex-col w-full items-center max-w-[1280px] h-full bg-[#f5f5f9]'>
             <div className="flex justify-center py-2 w-[90%] h-fit bg-cont-100 mt-10 rounded-lg">
-                {location.pathname == "/p/home" ? (
+                {res == "asdsadasdwq" ? (
                     <>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Loans</span></div>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="md:text-2xl text-lg font-normal text-cont-50">Loans</span></div>
@@ -58,7 +60,7 @@ export const Home = () => {
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2">{count4}<span className="md:text-2xl text-lg font-normal text-cont-50">Clients</span></div>
                     </>
                 ) : ""}
-                {location.pathname == "/sp/home" ? (
+                {res == "shop" ? (
                     <>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Loans</span></div>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Containers</span></div>
@@ -87,8 +89,8 @@ export const Home = () => {
                 </div>
             </div>
             <div className="flex flex-col justify-center w-[90%] h-[250px] bg-cont-100 mt-5 mb-10 p-5 rounded-lg">
-                {location.pathname == "/p/home" ? <HomeContainers /> : ""}
-                {location.pathname == "/sp/home" ? <SuperHomeShops /> : ""}
+                {res == "asdsadasdwq" ? <HomeContainers /> : ""}
+                {res == "shop" ? <SuperHomeShops /> : ""}
             </div>
         </div>
     )

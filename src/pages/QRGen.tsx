@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import NotFound from "../components/layout-components/NotFound";
+import { getLog } from "./auth/auth-components/Login";
 
 export const QRGen = () => {
+    const res = getLog()
     const [selectedOption1, setSelectedOption1] = useState("0")
     const [selectedOption2, setSelectedOption2] = useState("0")
     const [selectedOption3, setSelectedOption3] = useState("1")
@@ -95,77 +98,82 @@ export const QRGen = () => {
             console.log("asdfasdf");
         })
     })
-    return (
-        <div className="flex flex-col items-center w-full px-5 mt-8 bg-[#f5f5f9]">
-            <h1 className="flex w-full py-4 rounded-t-lg bg-[#F9FAFB] px-16 border-[#EAECF0] border-[1px]">QR Generator</h1>
-            <div className="flex flex-col md:flex-row justify-between w-full bg-cont-100 pt-10 md:px-10">
-                <div className="flex flex-col md:w-1/3 w-full md:px-2 px-[20%]">
-                    <div className="flex flex-col-reverse">
-                        <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1] rounded-md" id="country">
-                            <div className="cursor-pointer item1">
-                                <input type="radio" className="hidden" name="category" id="1" />
-                                <label htmlFor="1">UAE</label>
+
+    if (res == "asdsadasdwq") {
+        return <NotFound />
+    } else {
+        return (
+            <div className="flex flex-col items-center w-full px-5 mt-8 bg-[#f5f5f9]">
+                <h1 className="flex w-full py-4 rounded-t-lg bg-[#F9FAFB] px-16 border-[#EAECF0] border-[1px]">QR Generator</h1>
+                <div className="flex flex-col md:flex-row justify-between w-full bg-cont-100 pt-10 md:px-10">
+                    <div className="flex flex-col md:w-1/3 w-full md:px-2 px-[20%]">
+                        <div className="flex flex-col-reverse">
+                            <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1] rounded-md" id="country">
+                                <div className="cursor-pointer item1">
+                                    <input type="radio" className="hidden" name="category" id="1" />
+                                    <label htmlFor="1">UAE</label>
+                                </div>
+                                <input type="text" name="srch1" id="srch1" placeholder="Search in Countries"
+                                    className="bg-[#f1f1f1] absolute top-0 z-50 py-2 focus:outline-none" onKeyUp={e => {
+                                        const inputT = e.target as HTMLInputElement
+                                        filterList1(inputT.value)
+                                    }} />
                             </div>
-                            <input type="text" name="srch1" id="srch1" placeholder="Search in Countries"
-                                className="bg-[#f1f1f1] absolute top-0 z-50 py-2 focus:outline-none" onKeyUp={e => {
-                                    const inputT = e.target as HTMLInputElement
-                                    filterList1(inputT.value)
-                                }} />
+                            <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(1)}>Country</div>
                         </div>
-                        <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(1)}>Country</div>
-                    </div>
-                    <div className="flex flex-col-reverse">
-                        <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1]" id="containerModel">
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="1" />
-                                <label htmlFor="1">1</label>
+                        <div className="flex flex-col-reverse">
+                            <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1]" id="containerModel">
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="1" />
+                                    <label htmlFor="1">1</label>
+                                </div>
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="2" />
+                                    <label htmlFor="2">2</label>
+                                </div>
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="3" />
+                                    <label htmlFor="3">3</label>
+                                </div>
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="4" />
+                                    <label htmlFor="4">4</label>
+                                </div>
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="5" />
+                                    <label htmlFor="5">5</label>
+                                </div>
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="6" />
+                                    <label htmlFor="6">6</label>
+                                </div>
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="7" />
+                                    <label htmlFor="7">7</label>
+                                </div>
+                                <div className="cursor-pointer item2">
+                                    <input type="radio" className="hidden" name="category2" id="8" />
+                                    <label htmlFor="8">8</label>
+                                </div>
+                                <input type="text" name="srch2" id="srch2" placeholder="Search in Countries"
+                                    className="bg-[#f1f1f1] absolute top-0 z-50 py-2 focus:outline-none" onKeyUp={e => {
+                                        const inputT = e.target as HTMLInputElement
+                                        filterList2(inputT.value)
+                                    }} />
                             </div>
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="2" />
-                                <label htmlFor="2">2</label>
-                            </div>
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="3" />
-                                <label htmlFor="3">3</label>
-                            </div>
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="4" />
-                                <label htmlFor="4">4</label>
-                            </div>
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="5" />
-                                <label htmlFor="5">5</label>
-                            </div>
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="6" />
-                                <label htmlFor="6">6</label>
-                            </div>
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="7" />
-                                <label htmlFor="7">7</label>
-                            </div>
-                            <div className="cursor-pointer item2">
-                                <input type="radio" className="hidden" name="category2" id="8" />
-                                <label htmlFor="8">8</label>
-                            </div>
-                            <input type="text" name="srch2" id="srch2" placeholder="Search in Countries"
-                                className="bg-[#f1f1f1] absolute top-0 z-50 py-2 focus:outline-none" onKeyUp={e => {
-                                    const inputT = e.target as HTMLInputElement
-                                    filterList2(inputT.value)
-                                }} />
+                            <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(2)}>Container model</div>
                         </div>
-                        <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(2)}>Container model</div>
+                        <input type="date" name="date" id="date" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" onChange={(e) => handleChange3(e)} />
+                        <input type="number" value={qty} placeholder="Quantity" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="num" id="num" onChange={(e) => handleQty(e)} />
                     </div>
-                    <input type="date" name="date" id="date" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" onChange={(e) => handleChange3(e)} />
-                    <input type="number" value={qty} placeholder="Quantity" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="num" id="num" onChange={(e) => handleQty(e)} />
-                </div>
-                <div className="flex flex-col items-center md:relative -top-5">
-                    <img src="/assets/QR.png" alt="QR" />
-                    <button className={`flex justify-center w-[80%] rounded-full text-cont-100 ${((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? "bg-[#03C088]" : "bg-[#BFC3C2]"} text-cont100 py-2`}>Download</button>
-                    <p className="text-[#03C088]">{((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? qty : ""}</p>
+                    <div className="flex flex-col items-center md:relative -top-5">
+                        <img src="/assets/QR.png" alt="QR" />
+                        <button className={`flex justify-center w-[80%] rounded-full text-cont-100 ${((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? "bg-[#03C088]" : "bg-[#BFC3C2]"} text-cont100 py-2`}>Download</button>
+                        <p className="text-[#03C088]">{((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? qty : ""}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 export default QRGen;
