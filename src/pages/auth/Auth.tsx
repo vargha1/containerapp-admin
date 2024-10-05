@@ -4,7 +4,7 @@ import Register from "./auth-components/Register";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import ForgotPassword from "./auth-components/ForgotPassword";
 
-export const Auth = ({setIsLogged}:any) => {
+export const Auth = ({ isLogged, setIsLogged }: any) => {
     const location = useLocation()
     const [authState, setAuthState] = useState("login")
     useEffect(() => {
@@ -23,7 +23,7 @@ export const Auth = ({setIsLogged}:any) => {
                             <Link to="/auth/register" className={`flex justify-center w-1/2 p-2 rounded-full ${authState == "register" ? "text-cont-100 bg-cont-150" : "text-cont-75 bg-inherit"}`}>Register</Link>
                         </div>
                         <Routes>
-                            <Route path="/login" element={<Login setIsLogged={setIsLogged} />} />
+                            <Route path="/login" element={<Login isLogged={isLogged} setIsLogged={setIsLogged} />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/forgotPassword" element={<ForgotPassword />} />
                         </Routes>

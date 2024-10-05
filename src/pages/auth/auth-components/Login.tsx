@@ -3,7 +3,7 @@ import { SvgShowPwd } from "../../../icons/SvgShowPwd";
 import { useState } from "react";
 import { login } from "../../../api/auth";
 let responseAPI: any = ""
-export const Login = ({ setIsLogged }: any) => {
+export const Login = ({ isLogged, setIsLogged }: any) => {
     const nav = useNavigate()
     const [visiblityState, setVisiblityState] = useState("password")
     const handleLogin = () => {
@@ -14,11 +14,12 @@ export const Login = ({ setIsLogged }: any) => {
             "password": password
         }).then(response => {
             // console.log(response);
-            if (response.status == 200) {
+            if (response.status == 200 || isLogged) {
                 setIsLogged(response.data.access)
                 nav("/home")
             }
             responseAPI = response.data.status
+            localStorage.setItem("responseApi", responseAPI)
         }).catch(err => {
             console.log(err);
         })
@@ -50,5 +51,5 @@ export const Login = ({ setIsLogged }: any) => {
 }
 export default Login;
 export const getLog = () => {
-    return responseAPI
+    return localStorage.getItem("responseApi")
 }

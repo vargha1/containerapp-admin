@@ -1,4 +1,4 @@
-import { Link, useLocation, useSearchParams } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { Main } from "../components/requests-components/Main"
 import Pending from "../components/requests-components/Pending";
 import Accepted from "../components/requests-components/Accepted";
@@ -6,7 +6,6 @@ import { getLog } from "./auth/auth-components/Login";
 
 export const Requests = () => {
     const res = getLog()
-    const location = useLocation()
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
     return (

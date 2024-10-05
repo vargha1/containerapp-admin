@@ -54,7 +54,7 @@ export const MainContainer = ({ isLogged, setIsLogged }: any) => {
         }
     }
     useEffect(() => {
-        if (localStorage.getItem("loginStatus") == "" || isLogged == false) {
+        if (localStorage.getItem("loginStatus") == null && isLogged == "") {
             nav("/auth/login/")
             return
         }
