@@ -203,7 +203,6 @@ export const Pending = () => {
             },
         ],
     ]
-    const location = useLocation()
     return (
         <>
             <div className='w-[90%] flex flex-wrap pt-8'>
