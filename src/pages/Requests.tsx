@@ -2,8 +2,10 @@ import { Link, useLocation, useSearchParams } from "react-router-dom"
 import { Main } from "../components/requests-components/Main"
 import Pending from "../components/requests-components/Pending";
 import Accepted from "../components/requests-components/Accepted";
+import { getLog } from "./auth/auth-components/Login";
 
 export const Requests = () => {
+    const res = getLog()
     const location = useLocation()
     const [searchParams] = useSearchParams()
     const page = searchParams.get('page')
@@ -11,18 +13,18 @@ export const Requests = () => {
         <>
             <div className='w-[90%] h-[100svh] flex flex-col items-center pt-8'>
                 <div className="flex flex-wrap w-full mb-4">
-                    {location.pathname.includes("/p/") ?
+                    {res != "shop" ?
                         <>
-                            <Link to="/p/requests?page=main" className={`${page == "main" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 me-4 rounded-full shadow-lg `}>Request</Link>
-                            <Link to="/p/requests?page=pending" className={`${page == "pending" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Pending</Link>
-                            <Link to="/p/requests?page=accepted" className={`${page == "accepted" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Accepted</Link>
+                            <Link to="/requests?page=main" className={`${page == "main" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 me-4 rounded-full shadow-lg `}>Request</Link>
+                            <Link to="/requests?page=pending" className={`${page == "pending" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Pending</Link>
+                            <Link to="/requests?page=accepted" className={`${page == "accepted" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Accepted</Link>
                         </>
                         : ""}
 
-                    {location.pathname.includes("/sp/") ?
+                    {res == "shop" ?
                         <>
-                            <Link to="/sp/requests?page=pending" className={`${page == "pending" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Requests</Link>
-                            <Link to="/sp/requests?page=accepted" className={`${page == "accepted" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Accepted</Link>
+                            <Link to="/requests?page=pending" className={`${page == "pending" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Requests</Link>
+                            <Link to="/requests?page=accepted" className={`${page == "accepted" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Accepted</Link>
                         </>
                         : ""}
                 </div>

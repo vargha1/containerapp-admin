@@ -8,6 +8,8 @@ function App() {
   useEffect(() => {
     if (isLogged != "") {
       localStorage.setItem("loginStatus", isLogged)
+    } else {
+      localStorage.removeItem("loginStatus")
     }
   }, [isLogged])
   return (

@@ -55,7 +55,7 @@ export const MainContainer = ({ isLogged, setIsLogged }: any) => {
         }
     }
     useEffect(() => {
-        if (localStorage.getItem("loginStatus") == "") {
+        if (localStorage.getItem("loginStatus") == "" || isLogged == false) {
             nav("/auth/login/")
             return
         }
@@ -71,8 +71,6 @@ export const MainContainer = ({ isLogged, setIsLogged }: any) => {
                     </div>
                     <h2 className="font-bold md:text-lg text-[14px] leading-5">Hello, Vargha</h2>
                     <div className="flex items-center justify-center relative">
-                        <SvgSearch fillColor="#000" className="absolute left-[7rem]" />
-                        <input type="search" name="srch" id="srch" className="md:me-8 me-5 py-2 px-5 border-2 border-[#d1d1d1] rounded-full focus:outline-none" />
                         <div className="w-[48px] h-[48px] md:ms-5 p-[8px] rounded-full border-gray-400 border-[1px]" onClick={() => handleProfile("toggle")} id="profileIcon">
                             <img src="/assets/almubdi.png" alt="profile" />
                         </div>
@@ -82,7 +80,7 @@ export const MainContainer = ({ isLogged, setIsLogged }: any) => {
             <div className="flex flex-col fixed top-[83px] shadow-[0_0px_15px_-5px] rounded-lg right-5 px-12 py-2 bg-white -top-20 z-[5] invisible transition-all duration-300" id="profileDrawer">
                 <p>Potato hut</p>
                 <Link to="/p/profile" className="py-2" onClick={() => handleProfile("close")}>My Profile</Link>
-                <Link to="/p/home" onClick={() => { handleProfile("close"); setIsLogged("") }}>Sign Out</Link>
+                <Link to="/auth/login" onClick={() => { handleProfile("close"); setIsLogged("") }}>Sign Out</Link>
             </div>
             <div className="fixed top-0 right-0 bottom-0 md:left-[250px] invisible" id="cover2" onClick={() => handleProfile("close")}></div>
             <Routes>
@@ -90,13 +88,13 @@ export const MainContainer = ({ isLogged, setIsLogged }: any) => {
                 {/* <Route path='/sp/home' element={<Home />} /> */}
                 <Route path='/loan' element={<Loan />} />
                 <Route path='/return' element={<Return />} />
-                <Route path='/sp/shop' element={<Shops />} />
-                <Route path='/sp/qr' element={<QRGen />} />
+                <Route path='/shop' element={<Shops />} />
+                <Route path='/qr' element={<QRGen />} />
                 <Route path='/containers' element={<Containers />} />
                 <Route path='/requests' element={<Requests />} />
-                <Route path='/sp/requests' element={<Requests />} />
+                <Route path='/requests' element={<Requests />} />
                 <Route path='/support' element={<Support />} />
-                <Route path='/sp/support' element={<Support />} />
+                <Route path='/support' element={<Support />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>
