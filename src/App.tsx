@@ -9,7 +9,6 @@ function App() {
     if (isLogged != "") {
       localStorage.setItem("loginStatus", isLogged)
     }
-    console.log(isLogged);
   }, [isLogged])
   useEffect(() => {
     if (localStorage.getItem("loginStatus")) {

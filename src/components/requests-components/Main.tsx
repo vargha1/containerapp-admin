@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getLog } from "../../pages/auth/auth-components/Login";
 export const Main = () => {
     const res = getLog()
-    if (res != "shop") {
+    if (res != true) {
         let [list, setList] = useState([
             {
                 id: 1,

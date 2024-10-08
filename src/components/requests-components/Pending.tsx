@@ -208,7 +208,7 @@ export const Pending = () => {
                 {pendingList.map((list, index) => {
                     return (<div className="flex flex-col flex-wrap xl:w-[calc(25%-20px)] lg:w-[calc(33.3333%-20px)] w-full me-5 mb-5 rounded-xl bg-cont-100" key={index}>
                         <div className="flex justify-between w-full px-5 py-3 bg-cont-150 rounded-t-3xl">
-                            {res == "shop" ? <p className="text-cont-100 text-2xl">SHOP NAME</p> : ""}
+                            {res == true ? <p className="text-cont-100 text-2xl">SHOP NAME</p> : ""}
                             <p className="text-cont-100 text-lg">{list[0].requestDate}</p>
                         </div>
                         {list.map((item, index) => {
@@ -222,13 +222,13 @@ export const Pending = () => {
                                 )
                             }
                         })}
-                        {res != "shop" ?
+                        {res != true ?
                             <div className="flex justify-center py-3 bg-cont-150 rounded-b-3xl">
                                 <p className="text-2xl text-cont-100">Pending</p>
                             </div>
                             : ""}
 
-                        {res == "shop" ?
+                        {res == true ?
                             <div className="flex justify-center py-3 bg-cont-100 rounded-b-3xl">
                                 <button className="flex justify-center w-[85%] bg-[#03C088] text-cont-100 text-xl rounded-full py-1">Accepted</button>
                             </div>

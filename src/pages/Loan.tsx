@@ -3,7 +3,7 @@ import { getLog } from "./auth/auth-components/Login";
 
 export const Loan = () => {
     const res = getLog()
-    if (res == "shop") {
+    if (res == true) {
         return <NotFound />
     } else {
         return (

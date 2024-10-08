@@ -52,7 +52,7 @@ export const Home = () => {
     return (
         <div className='flex flex-col w-full items-center max-w-[1280px] h-full bg-[#f5f5f9]'>
             <div className="flex justify-center py-2 w-[90%] h-fit bg-cont-100 mt-10 rounded-lg">
-                {res == "asdsadasdwq" ? (
+                {res == false ? (
                     <>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Loans</span></div>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="md:text-2xl text-lg font-normal text-cont-50">Loans</span></div>
@@ -60,7 +60,7 @@ export const Home = () => {
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2">{count4}<span className="md:text-2xl text-lg font-normal text-cont-50">Clients</span></div>
                     </>
                 ) : ""}
-                {res == "shop" ? (
+                {res == true ? (
                     <>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count1}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Loans</span></div>
                         <div className="flex flex-col items-center md:text-4xl text-2xl font-bold w-1/4 px-6 py-2 border-e-2 border-[#eeeeee]">{count2}<span className="md:text-2xl text-lg font-normal text-cont-50">Total Containers</span></div>
@@ -89,8 +89,8 @@ export const Home = () => {
                 </div>
             </div>
             <div className="flex flex-col justify-center w-[90%] h-[250px] bg-cont-100 mt-5 mb-10 p-5 rounded-lg">
-                {res == "asdsadasdwq" ? <HomeContainers /> : ""}
-                {res == "shop" ? <SuperHomeShops /> : ""}
+                {res == false ? <HomeContainers /> : ""}
+                {res == true ? <SuperHomeShops /> : ""}
             </div>
         </div>
     )

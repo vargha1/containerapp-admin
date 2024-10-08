@@ -12,7 +12,6 @@ import { getLog } from "../../pages/auth/auth-components/Login"
 
 export const LeftContainer = ({ setIsLogged }: any) => {
     const res = getLog()
-    console.log(res);
     let location = useLocation()
     const [isOpen, setIsOpen] = useState(false)
     function handleDropDown(e: any) {
@@ -70,7 +69,7 @@ export const LeftContainer = ({ setIsLogged }: any) => {
     }
     return (
         <>
-            {res == "asdsadasdwq" ?
+            {res == false ?
                 <div id="drawer" className="flex flex-col items-center md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={e => { e.stopPropagation(); handleDrawer("close") }}>+</p>
                     <h1 className="text-4xl font-[Megrim] mt-5 w-full ps-8"><span className="text-[#0b9595] font-[Megrim]">Eco</span> P<span className="text-[#0b9595] font-[Megrim]">a</span>ck</h1>
@@ -87,7 +86,7 @@ export const LeftContainer = ({ setIsLogged }: any) => {
                     <Link onClick={e => { e.stopPropagation(); handleDrawer("close"); setIsLogged("") }} to="/auth/login" className="w-full flex py-3 ps-6 hover:bg-[#3e4049] absolute bottom-5"><SvgLogout fillColor="#60626E" /> Logout</Link>
                 </div> : ""
             }
-            {res == "shop" ?
+            {res == true ?
                 <div id="drawer" className="flex flex-col items-center md:w-[250px] w-full fixed top-0 bottom-0 !-left-[300%] left-0 md:!left-0 z-10 bg-cont-150 text-cont-125 transition-all duration-300">
                     <p className="text-6xl rotate-45 w-[32px] h-[32px] absolute right-5 top-6 cursor-pointer md:hidden" onClick={e => { e.stopPropagation(); handleDrawer("close") }}>+</p>
                     <h1 className="text-4xl font-[Megrim] mt-5 w-full ps-8"><span className="text-[#0b9595] font-[Megrim]">Eco</span> P<span className="text-[#0b9595] font-[Megrim]">a</span>ck</h1>

@@ -12,7 +12,7 @@ export const Requests = () => {
         <>
             <div className='w-[90%] h-[100svh] flex flex-col items-center pt-8'>
                 <div className="flex flex-wrap w-full mb-4">
-                    {res != "shop" ?
+                    {res != true ?
                         <>
                             <Link to="/requests?page=main" className={`${page == "main" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 me-4 rounded-full shadow-lg `}>Request</Link>
                             <Link to="/requests?page=pending" className={`${page == "pending" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Pending</Link>
@@ -20,7 +20,7 @@ export const Requests = () => {
                         </>
                         : ""}
 
-                    {res == "shop" ?
+                    {res == true ?
                         <>
                             <Link to="/requests?page=pending" className={`${page == "pending" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Requests</Link>
                             <Link to="/requests?page=accepted" className={`${page == "accepted" ? "bg-cont-150 text-cont-100" : "text-[#292D32]"} px-10 py-1 mx-4 rounded-full shadow-lg`}>Accepted</Link>

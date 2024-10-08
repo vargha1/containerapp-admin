@@ -51,5 +51,9 @@ export const Login = ({ isLogged, setIsLogged }: any) => {
 }
 export default Login;
 export const getLog = () => {
-    return localStorage.getItem("responseApi")
+    if (localStorage.getItem("responseApi") == "admin") {
+        return true;
+    } else {
+        return false;
+    }
 }
