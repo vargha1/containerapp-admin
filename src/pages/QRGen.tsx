@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NotFound from "../components/layout-components/NotFound";
 import { getLog } from "./auth/auth-components/Login";
+import qr_api from "../api/QR";
 
 export const QRGen = () => {
     const res = getLog()
@@ -8,9 +9,29 @@ export const QRGen = () => {
     const [selectedOption2, setSelectedOption2] = useState("0")
     const [selectedOption3, setSelectedOption3] = useState("1")
     const [qty, setQty] = useState("0")
-
+    const [countryList, setCountryList] = useState({})
     useEffect(() => {
         setQty("1")
+        async function fetchCountries() {
+            try {
+                const response = await qr_api.get("/api/v0/pack/containers/types_and_countries", {
+                    headers: {
+                        "Authorization": `JWT ${localStorage.getItem("loginStatus")}`
+                    }
+                })
+                setCountryList(response.data.countries)
+                console.log(response.data.countries)
+            } catch (err: any) {
+                if (err.response) {
+                    if (err.response.status == 403) {
+
+                    }
+                } else {
+                    console.log(`Error: ${err.message}`)
+                }
+            }
+        }
+        fetchCountries()
     }, [])
     function handleChange3(event: any) {
         console.log(event.target.value.slice(8))
@@ -84,14 +105,14 @@ export const QRGen = () => {
             }
         }
     }
-    document.querySelectorAll(".item1").forEach(item => {
+    document.querySelectorAll(".itemType1").forEach(item => {
         item.addEventListener("click", () => {
             countrySelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
             setSelectedOption1("1")
             console.log("asdfasdf");
         })
     })
-    document.querySelectorAll(".item2").forEach(item => {
+    document.querySelectorAll(".itemType2").forEach(item => {
         item.addEventListener("click", () => {
             containerModelSelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
             setSelectedOption2("1")
@@ -107,10 +128,12 @@ export const QRGen = () => {
                     <div className="flex flex-col md:w-1/3 w-full md:px-2 px-[20%]">
                         <div className="flex flex-col-reverse">
                             <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1] rounded-md" id="country">
-                                <div className="cursor-pointer item1">
-                                    <input type="radio" className="hidden" name="category" id="1" />
-                                    <label htmlFor="1">UAE</label>
-                                </div>
+                                {Object.keys(countryList).map((country, index) => (
+                                    <div className={`cursor-pointer itemType1`} key={index}>
+                                        <input type="radio" className="hidden" name="category" id="1" />
+                                        <label htmlFor={index.toString()} >{country}</label>
+                                    </div>
+                                ))}
                                 <input type="text" name="srch1" id="srch1" placeholder="Search in Countries"
                                     className="bg-[#f1f1f1] absolute top-0 z-50 py-2 focus:outline-none" onKeyUp={e => {
                                         const inputT = e.target as HTMLInputElement
@@ -121,35 +144,35 @@ export const QRGen = () => {
                         </div>
                         <div className="flex flex-col-reverse">
                             <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1]" id="containerModel">
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="1" />
                                     <label htmlFor="1">1</label>
                                 </div>
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="2" />
                                     <label htmlFor="2">2</label>
                                 </div>
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="3" />
                                     <label htmlFor="3">3</label>
                                 </div>
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="4" />
                                     <label htmlFor="4">4</label>
                                 </div>
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="5" />
                                     <label htmlFor="5">5</label>
                                 </div>
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="6" />
                                     <label htmlFor="6">6</label>
                                 </div>
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="7" />
                                     <label htmlFor="7">7</label>
                                 </div>
-                                <div className="cursor-pointer item2">
+                                <div className="cursor-pointer itemType2">
                                     <input type="radio" className="hidden" name="category2" id="8" />
                                     <label htmlFor="8">8</label>
                                 </div>
@@ -161,8 +184,8 @@ export const QRGen = () => {
                             </div>
                             <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(2)}>Container model</div>
                         </div>
-                        <input type="date" name="date" id="date" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" onChange={(e) => handleChange3(e)} />
-                        <input type="number" value={qty} placeholder="Quantity" className="py-2 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="num" id="num" onChange={(e) => handleQty(e)} />
+                        <input type="date" name="date" id="date" className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full" onChange={(e) => handleChange3(e)} />
+                        <input type="number" value={qty} placeholder="Quantity" className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="num" id="num" onChange={(e) => handleQty(e)} />
                     </div>
                     <div className="flex flex-col items-center md:relative -top-5">
                         <img src="/assets/QR.png" alt="QR" />
