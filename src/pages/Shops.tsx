@@ -95,7 +95,7 @@ export const Shops = () => {
     if (res == true) {
         return (
             <div className='w-full flex justify-center items-center'>
-                <table className="md:w-[90%] w-full rounded-md border-2 border-[#d9d9d9] border-separate border-spacing-0 bg-cont-100 my-12">
+                <table className="md:w-[90%] w-full rounded-md border-2 border-[#d9d9d9] border-separate border-spacing-0 bg-cont-100 lg:my-12">
                     <thead className="bg-[#F9FAFB]">
                         <tr>
                             <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9] font-bold">Name</td>
