@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Shops = () => {
     const res = getLog()
-    let [reqStatus, setReqStatus] = useState(0)
-    let shopId = 0;
+    let reqStatus, shopId = 0;
     const nav = useNavigate()
     const [visiblityState, setVisiblityState] = useState("password")
     if (reqStatus == 403) {
@@ -37,7 +36,7 @@ export const Shops = () => {
                 }
             }).then(response => {
                 if (response.status == 403) {
-                    setReqStatus(response.status)
+                    reqStatus = response.status
                 }
             })
         }
@@ -55,7 +54,7 @@ export const Shops = () => {
             } catch (err: any) {
                 if (err.response) {
                     if (err.response.status == 403) {
-                        setReqStatus(err.response.status)
+                        reqStatus = err.response.status
                     }
                 } else {
                     console.log(`Error: ${err.message}`)
@@ -74,7 +73,7 @@ export const Shops = () => {
             }
         }).then(response => {
             if (response.status == 403) {
-                setReqStatus(response.status)
+                reqStatus = response.status
             }
         })
     }
@@ -88,9 +87,10 @@ export const Shops = () => {
             }
         }).then(response => {
             if (response.status == 403) {
-                setReqStatus(response.status)
+                reqStatus = response.status
             }
         })
+
     }
     if (res == true) {
         return (
@@ -112,7 +112,7 @@ export const Shops = () => {
                             <tr key={index}>
                                 <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">{shop.name}</td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                                <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.email}</td>
+                                <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.email}{shop.id}</td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.phone}</td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(shop.id)} /></td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>
