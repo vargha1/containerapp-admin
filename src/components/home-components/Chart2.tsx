@@ -1,3 +1,4 @@
+import weeklyDataAPI from '../../api/weeklyData';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -8,6 +9,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { useEffect, useState } from 'react';
 
 ChartJS.register(
     CategoryScale,
@@ -17,18 +19,6 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-const data: any = {
-    labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S', 'M', 'T', 'W'],
-    datasets: [
-        {
-            label: 'Sales',
-            data: [60, 110, 85, 120, 85, 135, 85, 70, 95, 85],
-            backgroundColor: 'rgba(133, 244, 250, 1)',
-            barThickness: 10,
-            borderRadius: "8",
-        },
-    ],
-};
 
 const options = {
     responsive: true,
@@ -44,10 +34,45 @@ const options = {
     scales: {
         y: {
             beginAtZero: true,
-            max: 160, // حداکثر مقدار محور y را روی 160 تنظیم می‌کنیم
+            // max: 160, // حداکثر مقدار محور y را روی 160 تنظیم می‌کنیم
         },
     },
 };
 export const Chart2 = () => {
+    const [weeklyData, setWeeklyData] = useState<any>([])
+    useEffect(() => {
+        async function fetchCountries() {
+            try {
+                const response = await weeklyDataAPI.get("/api/v0/pack/containers/loans_by_weekday/", {
+                    headers: {
+                        "Authorization": `JWT ${localStorage.getItem("loginStatus")}`
+                    }
+                })
+                setWeeklyData(response.data.loans_by_weekday)
+            } catch (err: any) {
+                if (err.response) {
+                    if (err.response.status == 403) {
+
+                    }
+                } else {
+                    console.log(`Error: ${err.message}`)
+                }
+            }
+        }
+        fetchCountries()
+    }, [])
+    const data: any = {
+        labels: ['S', 'S', 'M', 'T', 'W', 'T', 'F'],
+        datasets: [
+            {
+                label: 'Sales',
+                data: [weeklyData.Saturday, weeklyData.Sunday, weeklyData.Monday, weeklyData.Tuesday, weeklyData.Wednesday, weeklyData.Thursday, weeklyData.Friday],
+                backgroundColor: 'rgba(133, 244, 250, 1)',
+                barThickness: 10,
+                borderRadius: "8",
+            },
+        ],
+    };
+
     return <Bar data={data} options={options} />;
 }
