@@ -5,6 +5,7 @@ import HomeContainers from "../components/home-components/HomeContainers";
 import { useLocation } from "react-router-dom";
 import SuperHomeShops from "../components/home-components/SuperHomeShops";
 import { getLog } from "./auth/auth-components/Login";
+import shops_api from "../api/shops";
 
 export const Home = () => {
     const res = getLog()
@@ -13,10 +14,32 @@ export const Home = () => {
     const [count2, setCount2] = useState(0);
     const [count3, setCount3] = useState(0);
     const [count4, setCount4] = useState(0);
+    const [totalShops, setTotalShops] = useState(0)
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await shops_api.get("/api/v0/shops/shop", {
+                    headers: {
+                        "Authorization": `JWT ${localStorage.getItem("loginStatus")}`
+                    }
+                })
+                setTotalShops(response.data.length)
+            } catch (err: any) {
+                if (err.response) {
+                    if (err.response.status == 403) {
+                        console.log(err.response.status)
+                    }
+                } else {
+                    console.log(`Error: ${err.message}`)
+                }
+            }
+        }
+        fetchUsers()
+    }, [])
 
     let targetNumber1 = 250; // Set target number for first counter
     let targetNumber2 = 15; // Set target number for second counter
-    let targetNumber3 = 132; // Set target number for third counter
+    let targetNumber3 = totalShops; // Set target number for third counter
     let targetNumber4 = 7500; // Set target number for fourth counter
 
     if (location.pathname == "/sp/home") {
