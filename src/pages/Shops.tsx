@@ -43,7 +43,7 @@ export const Shops = () => {
     }
     const [shopList, setShopList] = useState<any[]>([])
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchShops = async () => {
             try {
                 const response = await shops_api.get("/api/v0/shops/shop", {
                     headers: {
@@ -61,7 +61,7 @@ export const Shops = () => {
                 }
             }
         }
-        fetchUsers()
+        fetchShops()
     }, [])
     function activateShop(id: number) {
         shops_api.post("/api/v0/shops/change-shop-status/", {
@@ -101,6 +101,7 @@ export const Shops = () => {
                             <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9] font-bold">Name</td>
                             <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">Join Date</td>
                             <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">Email</td>
+                            <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">ID</td>
                             <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">Phone Number</td>
                             <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">Password</td>
                             <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9] font-bold">Location</td>
@@ -112,7 +113,8 @@ export const Shops = () => {
                             <tr key={index}>
                                 <td className="text-[10px] md:text-[16px] md:ps-12 ps-6 border-b-2 py-3 border-[#d9d9d9]">{shop.name}</td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">August 9</td>
-                                <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.email}{shop.id}</td>
+                                <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.email}</td>
+                                <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.id}</td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]">{shop.phone}</td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLock fillColor="#292D32" click={() => passChangerOpen(shop.id)} /></td>
                                 <td className="text-[10px] md:text-[16px] border-b-2 py-3 border-[#d9d9d9]"><SvgLocation fillColor="#292D32" /></td>

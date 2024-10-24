@@ -1,18 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NotFound from "../components/layout-components/NotFound";
 import { getLog } from "./auth/auth-components/Login";
 import qr_api from "../api/QR";
+import QRCode from "react-qr-code";
+import { renderToStaticMarkup } from "react-dom/server";
 
 export const QRGen = () => {
+    const [loaded, setLoaded] = useState(false)
     const res = getLog()
     const [selectedOption1, setSelectedOption1] = useState("0")
     const [selectedOption2, setSelectedOption2] = useState("0")
     const [selectedOption3, setSelectedOption3] = useState("1")
     const [qty, setQty] = useState("0")
+    const [id, setId] = useState("1")
     const [countryList, setCountryList] = useState({})
+    const [types, setTypes] = useState({})
+    const [codeValue, setCodeValue] = useState("")
     useEffect(() => {
-        setQty("1")
-        async function fetchCountries() {
+        setCountryList({})
+        setTypes({})
+        async function fetchTypesAndCountries() {
             try {
                 const response = await qr_api.get("/api/v0/pack/containers/types_and_countries", {
                     headers: {
@@ -20,7 +27,8 @@ export const QRGen = () => {
                     }
                 })
                 setCountryList(response.data.countries)
-                console.log(response.data.countries)
+                setTypes(response.data.types)
+                setLoaded(true)
             } catch (err: any) {
                 if (err.response) {
                     if (err.response.status == 403) {
@@ -31,7 +39,7 @@ export const QRGen = () => {
                 }
             }
         }
-        fetchCountries()
+        fetchTypesAndCountries()
     }, [])
     function handleChange3(event: any) {
         console.log(event.target.value.slice(8))
@@ -42,6 +50,68 @@ export const QRGen = () => {
             setQty(event.target.value)
         }
     }
+
+    const svgWrapperRef = useRef<HTMLDivElement | null>(null); // Wrapper for SVG
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);  // Canvas ref
+
+    function handleQrCreation() {
+        let allCodes: any = [1];
+        qr_api.post("/api/v0/pack/containers/generate_codes/", {
+            "country": selectedOption1,
+            "type": selectedOption2,
+            "count": qty,
+            "shop": id
+        }, {
+            headers: {
+                "Authorization": `JWT ${localStorage.getItem("loginStatus")}`
+            }
+        }).then(response => {
+            allCodes = response.data.generate_codes
+        })
+        allCodes!.forEach((item: string) => {
+            const canvasRef = useRef<HTMLCanvasElement | null>(null);
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+
+            // Generate the QRCodeSVG as a string using renderToStaticMarkup
+            const svgString = renderToStaticMarkup(<QRCode value={item} size={200} />);
+
+            // Create a Blob from the SVG string
+            const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+            const url = URL.createObjectURL(svgBlob);
+
+            const image = new Image();
+            image.onload = () => {
+                // Set canvas dimensions based on the size of the QR code (in this case, 200x200)
+                canvas.width = 200;
+                canvas.height = 200;
+
+                // Draw the image on the canvas
+                ctx.drawImage(image, 0, 0);
+
+                // Convert the canvas content to a PNG
+                const pngUrl = canvas.toDataURL("image/png");
+
+                // Create a download link and trigger the download
+                const downloadLink = document.createElement("a");
+                downloadLink.href = pngUrl;
+                downloadLink.download = "qr_code.png";
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+
+                // Clean up the object URL
+                URL.revokeObjectURL(url);
+            };
+
+            // Set the image source to the SVG Blob URL
+            image.src = url;
+        });
+    }
+
     let countrySelector = document.getElementById("country")
     let containerModelSelector = document.getElementById("containerModel")
     function handleSelectBox(num: number) {
@@ -105,20 +175,25 @@ export const QRGen = () => {
             }
         }
     }
-    document.querySelectorAll(".itemType1").forEach(item => {
-        item.addEventListener("click", () => {
-            countrySelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
-            setSelectedOption1("1")
-            console.log("asdfasdf");
-        })
-    })
-    document.querySelectorAll(".itemType2").forEach(item => {
-        item.addEventListener("click", () => {
-            containerModelSelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
-            setSelectedOption2("1")
-            console.log("asdfasdf");
-        })
-    })
+    useEffect(() => {
+        if (loaded == true) {
+            document.querySelectorAll(".itemType1").forEach(item => {
+                item.addEventListener("click", () => {
+                    countrySelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
+                    setSelectedOption1(item!.children.item(1)!.innerHTML)
+                    console.log("asdfasdf");
+                })
+            })
+            document.querySelectorAll(".itemType2").forEach(item => {
+                item.addEventListener("click", () => {
+                    containerModelSelector!.nextElementSibling!.innerHTML = item!.children.item(1)!.innerHTML
+                    setSelectedOption2(item!.children.item(1)!.innerHTML)
+                    console.log("asdfasdf");
+                })
+            })
+        }
+        console.log(loaded);
+    }, [loaded])
 
     if (res == true) {
         return (
@@ -130,7 +205,7 @@ export const QRGen = () => {
                             <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1] rounded-md" id="country">
                                 {Object.keys(countryList).map((country, index) => (
                                     <div className={`cursor-pointer itemType1`} key={index}>
-                                        <input type="radio" className="hidden" name="category" id="1" />
+                                        <input type="radio" className="hidden" name="category" id={(index + 1).toString()} />
                                         <label htmlFor={index.toString()} >{country}</label>
                                     </div>
                                 ))}
@@ -140,42 +215,18 @@ export const QRGen = () => {
                                         filterList1(inputT.value)
                                     }} />
                             </div>
-                            <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(1)}>Country</div>
+                            <div className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full cursor-pointer text-[12px] md:text-[16px]" onClick={() => handleSelectBox(1)} >Country</div>
                         </div>
                         <div className="flex flex-col-reverse">
                             <div className="relative flex flex-col ps-5 opacity-0 max-h-0 overflow-hidden text-[12px] md:text-[16px] bg-[#f1f1f1]" id="containerModel">
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="1" />
-                                    <label htmlFor="1">1</label>
-                                </div>
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="2" />
-                                    <label htmlFor="2">2</label>
-                                </div>
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="3" />
-                                    <label htmlFor="3">3</label>
-                                </div>
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="4" />
-                                    <label htmlFor="4">4</label>
-                                </div>
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="5" />
-                                    <label htmlFor="5">5</label>
-                                </div>
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="6" />
-                                    <label htmlFor="6">6</label>
-                                </div>
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="7" />
-                                    <label htmlFor="7">7</label>
-                                </div>
-                                <div className="cursor-pointer itemType2">
-                                    <input type="radio" className="hidden" name="category2" id="8" />
-                                    <label htmlFor="8">8</label>
-                                </div>
+                                {Object.keys(types).map((type, index) => {
+                                    return (
+                                        <div className="cursor-pointer itemType2" key={index}>
+                                            <input type="radio" className="hidden" name="category2" id={(index + 1).toString()} />
+                                            <label htmlFor="1">{type}</label>
+                                        </div>
+                                    )
+                                })}
                                 <input type="text" name="srch2" id="srch2" placeholder="Search in Countries"
                                     className="bg-[#f1f1f1] absolute top-0 z-50 py-2 focus:outline-none" onKeyUp={e => {
                                         const inputT = e.target as HTMLInputElement
@@ -186,12 +237,14 @@ export const QRGen = () => {
                         </div>
                         <input type="date" name="date" id="date" className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full" onChange={(e) => handleChange3(e)} />
                         <input type="number" value={qty} placeholder="Quantity" className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="num" id="num" onChange={(e) => handleQty(e)} />
+                        <input type="number" value={id} placeholder="Shop id from shop list" className="py-2 px-3 my-3 shadow-[0_0px_15px_-3px] rounded-full" name="shopId" id="shopId" onChange={e => setId(e.target.value)} />
                     </div>
-                    <div className="flex flex-col items-center md:relative -top-5">
-                        <img src="/assets/QR.png" alt="QR" />
-                        <button className={`flex justify-center w-[80%] rounded-full text-cont-100 ${((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? "bg-[#03C088]" : "bg-[#BFC3C2]"} text-cont100 py-2`}>Download</button>
-                        <p className="text-[#03C088]">{((parseInt(selectedOption1)) * (parseInt(selectedOption2)) * (parseInt(selectedOption3))) > 0 ? qty : ""}</p>
+                    <div className="flex flex-col items-center md:relative -top-5" ref={svgWrapperRef}>
+                        <QRCode value={codeValue} level="H" />
+                        <button className={`flex justify-center w-[80%] mt-5 rounded-full text-cont-100 ${((parseInt(selectedOption3)) > 0 && selectedOption1 != "0" && selectedOption2 != "0") ? "bg-[#03C088]" : "bg-[#BFC3C2]"} text-cont100 py-2`} onClick={handleQrCreation}>Download</button>
+                        <p className="text-[#03C088]">{((parseInt(selectedOption3)) > 0 && selectedOption1 != "0" && selectedOption2 != "0") ? qty : ""}</p>
                     </div>
+                    <canvas ref={canvasRef} className="hidden"></canvas>
                 </div>
             </div>
         )
